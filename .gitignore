@@ -1,0 +1,100 @@
+# ============================================================
+# ICU Workflow .gitignore
+# 设计原则：临床数据/PHI 默认不进 git；只允许数据字典与示意数据
+# ============================================================
+
+# ---- macOS ----
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ---- Obsidian（保留配置，丢弃工作区状态）----
+.obsidian/workspace*
+.obsidian/cache/
+.obsidian/plugins/*/data.json
+
+# ---- 编辑器 ----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ---- R ----
+.Rhistory
+.RData
+.Rproj.user/
+.Ruserdata
+*.Rproj
+renv/library/
+renv/python/
+renv/staging/
+renv/local/
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ============================================================
+# 临床数据（PHI 风险）：默认全部拦截
+# ============================================================
+research/*/data/raw/
+research/*/data/derived/
+research/*/data/interim/
+
+# 常见数据文件格式（递归拦截）
+research/**/*.csv
+research/**/*.tsv
+research/**/*.xlsx
+research/**/*.xls
+research/**/*.dta
+research/**/*.sav
+research/**/*.sas7bdat
+research/**/*.parquet
+research/**/*.feather
+research/**/*.rds
+research/**/*.RData
+
+# ---- 例外：允许进 git 的内容 ----
+# 数据字典：必须可追溯
+!research/**/data-dictionary*
+!research/**/data_dictionary*
+# 示意/合成数据（必须文件名含 example/mock/synthetic）
+!research/**/*-example.csv
+!research/**/*-mock.csv
+!research/**/*-synthetic.csv
+# 模板目录全保留
+!research/_template/**
+
+# ---- PHI 显式标识 ----
+*PHI*
+*phi*
+*_identifiable*
+*真实姓名*
+*身份证*
+
+# ---- 论文中间产物 ----
+research/**/manuscript/*.docx
+research/**/manuscript/*.pdf
+research/**/manuscript/_cache/
+research/**/manuscript/*_files/
+research/**/manuscript/*_cache/
+
+# ---- 输出与临时 ----
+*.log
+*.tmp
+*.bak
+output/
+tmp/
