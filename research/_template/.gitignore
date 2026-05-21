@@ -1,0 +1,50 @@
+# 项目级 .gitignore（与顶级 .gitignore 互补，更严格）
+
+# 原始 / 派生数据：默认全部不进 git
+data/raw/
+data/derived/
+data/interim/
+
+# 数据文件（任何位置）
+*.csv
+*.tsv
+*.xlsx
+*.xls
+*.dta
+*.sav
+*.sas7bdat
+*.parquet
+*.feather
+*.rds
+*.RData
+
+# 例外：数据字典、示意数据
+!data/data-dictionary.md
+!data/data-dictionary.csv
+!data/*-example.csv
+!data/*-mock.csv
+!data/*-synthetic.csv
+
+# R / Python 缓存
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
+renv/python/
+__pycache__/
+*.pyc
+.venv/
+
+# Rmd 渲染产物
+manuscript/_cache/
+manuscript/*_cache/
+manuscript/*_files/
+manuscript/*.docx
+manuscript/*.pdf
+!manuscript/_archive/*.pdf
+manuscript/*.html
+
+# 中间输出
+output/
+figures/_draft/
+*.log

@@ -1,0 +1,102 @@
+---
+title: "{Manuscript Title}"
+author: "Author 1^1^, Author 2^2^, ..."
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  word_document:
+    reference_docx: _refs/journal-style.docx
+    toc: false
+  pdf_document:
+    keep_tex: true
+bibliography: references.bib
+csl: _refs/critical-care-medicine.csl   # 按目标期刊替换
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE,
+                      fig.path = "../figures/", dpi = 600)
+source(here::here("analysis", "00-setup.R"))
+cohort  <- readRDS(file.path(DATA_DERIVED, "cohort.rds"))
+results <- read_csv(file.path(OUTPUT_DIR, "primary-results.csv"))
+```
+
+# Structured Abstract
+
+**Background.** [问题与背景，1–2 句]
+
+**Methods.** [设计 / 人群 / 干预 / 主要结局 / 统计 — 3–5 句]
+
+**Results.** [n、基线、primary 数字 (effect size 95% CI p)、关键 secondary — 3–5 句]
+
+**Conclusions.** [一句话回答研究问题。临床意义。]
+
+**Keywords:** 3–6 个
+
+---
+
+# Introduction
+- 1–2 段。最后一段给出研究目的与假设。
+
+# Methods
+
+## Study design and population
+- 设计、中心、伦理批准号、注册号、CONSORT/STROBE 一致性。
+
+## Exposure / Intervention
+-
+
+## Outcomes
+- Primary
+- Secondary
+- Safety / 不良事件
+
+## Statistical analysis
+- 样本量
+- 主分析模型（pre-specified）
+- 缺失值处理
+- 敏感性分析
+- 软件版本
+
+# Results
+
+## Patient characteristics
+插入 Table 1。一段文字描述。
+
+```{r table1, results='asis'}
+# 用 flextable 或 gt 直接嵌入
+```
+
+## Primary outcome
+```{r primary}
+results |> knitr::kable(digits = 2)
+```
+
+## Secondary outcomes & subgroups
+插入 Fig 2 (KM) + Fig 3 (forest)。
+
+## Sensitivity analyses
+E-value、MICE、不同 PSM 参数结果一致。
+
+# Discussion
+- 主要发现（与假设对应）
+- 与既有证据的关系（[[trial-name]] 等）
+- 机制/合理性
+- 临床意义
+- 局限性（按未测量混杂、信息偏倚、外推性顺序）
+- 研究意义与下一步
+
+# Conclusions
+- 一段。
+
+# Funding / Conflicts / Contributions
+按 ICMJE。
+
+# References
+（由 references.bib + csl 自动生成）
+
+---
+
+# Appendix（按需）
+- A1. 详细统计方法
+- A2. 数据字典摘录
+- A3. 全部敏感性分析结果

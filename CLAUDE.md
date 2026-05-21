@@ -44,7 +44,11 @@ ICU 主治/高年资医生，亚专业覆盖：
 
 - 按 **SOAP** 或**系统化结构**（神经 / 循环 / 呼吸 / 肾 / 感染 / 营养 / 血液 / 内分泌）组织
 - 交班用语言精炼，问题列表 + active issues + 24h plan 三段式
-- 涉及 PHI/患者标识时仅保留病案号/床号/简称，不写真实姓名
+- 模板已建在 `cases/_templates/`，新病例 `cp` 即可
+- **PHI 双重检查（强制）**：任何写入 `cases/` 的内容，写前自检 + 写后提醒用户；规则详见 `cases/README.md`
+  - 不写真实姓名、身份证、手机、完整病案号、精确日期、单位
+  - 仅保留：床号、简称（P1/P2）、病案号末 4 位、年龄段、入科第几天
+  - 用户准备提交 git 前，主动提醒"是否需要扫描一遍 PHI"
 
 ### 文献阅读
 
@@ -107,6 +111,8 @@ icu-workflow/
 
 - 生成长文档时，结构化输出（表格 / 列表 / 代码框 / 速查框），便于直接复制到病历或笔记
 - 涉及关键试验时以 `**TRIAL_NAME (Journal Year)**` 格式标注
-- 涉及统计代码：完整可运行，附变量说明与必要的预处理
+- 涉及统计代码：完整可运行，附变量说明与必要的预处理；R 脚本默认参照 `research/_template/analysis/` 风格
 - 涉及英文写作：按目标期刊 word limit、structured abstract 要求组织；句式偏学术、避免冗词
+- **PHI 安全**：任何处理临床数据 / 病例的会话，先确认是否已去标识化；建议引用 `cases/README.md` 与 `research/_template/checklists/data-deidentification-checklist.md`
+- **数据文件**：`.gitignore` 默认拦截 `*.csv/xlsx/dta/sav/rds` 等数据文件；只允许 `data-dictionary.md` 和 `*-example.csv` 等示意数据进 git；不要绕过
 - 输出末尾如有自然的后续动作（保存笔记、扩展某点、case-based 展开），可主动提议但不强推
