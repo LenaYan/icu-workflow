@@ -91,7 +91,7 @@ icu-workflow/
 └── snippets/                  # 处方模板、计算器、查房模板速查
 ```
 
-会话归档保存在用户级目录：`~/.claude/sessions/YYYY-MM-DD-<topic>.md`（已在用，无需在本目录重复）。
+会话归档保存在本项目根目录下的 `sessions/YYYY-MM-DD-<topic>.md`。判定依据：当前目录存在 `CLAUDE.md` 与 `.claude/`，属于 Claude project，按 `session-save` skill 规则归档到项目内；只有不在任何 Claude project 时才退回用户级目录 `~/.claude/sessions/`。
 
 ---
 
