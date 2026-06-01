@@ -1,0 +1,139 @@
+---
+template: case-analysis
+deidentified: true
+append_to: 系统化-by-system.md
+---
+
+# 病例分析模板（深度决策段）
+
+> **用法**：本模板是【系统化-by-system】之后的延伸段。当某个 active issue 需要做病因鉴别 + 风险评估 + 治疗策略的深度讨论时（典型如 Trousseau-DIC、ARDS 难治期、未明感染源性休克），把本模板的「需解决的问题」「病例分析」「参考文献」三段接在 rounds 笔记之后。
+>
+> **风格底线**：
+> 1. 分析段用散文 + 要点（不要堆表），便于阅读
+> 2. 每一条临床主张都用行内 `[N]` 引用，编号对应底部参考文献
+> 3. 参考文献按 `references-style.md` 格式
+> 4. 同一证据被多次引用复用同一编号
+> 5. 末尾保留 PHI 自检清单
+
+---
+
+## 需解决的问题
+
+{用 1-3 句精确描述焦点问题。坏例："分析病情。" 好例："评估 PLT/Fib 急剧下降的根本原因；权衡当前致命性颅内出血 vs 已确诊 VTE × 2 的血栓风险；给出止血方案与抗凝重启路径。"}
+
+---
+
+## 病例分析
+
+### 1. {问题 1：病因 / 鉴别诊断}
+
+**最可能诊断**：{主诊断 + 亚型，如"肺癌相关 DIC，高纤溶型"}
+
+**诊断依据**：
+- **基础疾病**：{流行病学 / 触发因素，如"播散性恶性肿瘤是 DIC 最常见触发"} [N][N]
+- **实验室高度吻合**：{逐条列关键化验异常 + 引用源 / 参考阈值} [N][N]
+- **评分系统支持**：{如 ISTH overt DIC = 2+3+1 = 6 分 ≥ 5 → 明确}[N]
+- **亚型特征**：{如"Fib 极度↓ 而 D-dimer 极度↑ 符合高纤溶型"} [N]
+
+**鉴别诊断**（按可能性排序）：
+1. **{鉴别 1}**：{支持点} / {反对点 — 待补检查 X 否决}[N]
+2. **{鉴别 2}**：{HIT 等，给 4Ts 评分思路}[N]
+3. **{鉴别 3}**：{药物相关，需用药史确认}
+
+**与当前用药 / 操作的关系**：
+- {例：利伐沙班是 Xa 抑制剂，本身不导致 PLT↓/Fib↓ 消耗 [N]；但其残效（半衰期 5–13h [N]）放大了当前出血严重度，是"加重因素"而非"根因"。}
+
+---
+
+### 2. {问题 2：风险评估}
+
+**当前 {出血 / 血栓 / MOF / ARDS 重启} 风险等级**：**{极高 / 高 / 中 / 低}**
+
+支持依据：
+- **活动性事件**：{如"颅内 SAH，影像确诊"} [N]
+- **实验室触发**：{"PLT < 50、Fib < 1.0 → 显著出血风险"} [N]
+- **药物 / 操作残效**：{利伐沙班停 48h 仍可有抗凝活性 [N]}
+- **合并因素放大**：{HTN、CKD、肿瘤高凝叠加}
+
+---
+
+### 3. {问题 3：治疗策略}
+
+#### 3.1 急性期（{抗凝绝对禁忌 / 全力止血 / 镇静撤除 等}）
+
+**核心原则**：{1–2 句，如"活动性 ICH + 重度 PLT↓/Fib↓ → 抗凝绝对禁忌（CSCO 2019）[N]，全力止血"}
+
+**具体措施**：
+
+- **{PLT 输注}**
+  - 指征：PLT < {阈值} + 活动出血[N]
+  - 目标：{无 ICH ≥ 50 / 有 ICH ≥ 100} [N]
+  - 起始：{4–8 U 或 1 治疗量}
+  - 监测：输后 1h CCI；HIT 鉴别若 < 7.5 × 10⁹
+
+- **{Fib 补充}**
+  - 指征：Fib < 1.5 + 大出血[N]
+  - 目标：一般 ≥ 1.5；ICH/产科 ≥ 2.0 [N]
+  - 方案：人纤原 3–4 g 或冷沉淀 10–20 U
+
+- **{抗凝逆转}**
+  - 指征：{致命性出血 + DOAC 残效} [N]
+  - 方案：{优先 4F-PCC；高血栓风险者 25 IU/kg 起，按反应追加至 50 IU/kg [N]}
+  - 警告：{PCC 增加 TE 风险}[N]
+
+- **❌ 禁忌 / 慎用**：
+  - {例：全身 TXA — Trousseau / 已 VTE × 2 / 滤网在位 → 微血栓风险 [N]}
+
+#### 3.2 后续（{重启抗凝 / 撤机 / 拔管 / 升级镇痛}）
+
+**时机判断**：
+- {绝对禁忌解除条件，如"影像确认 ICH 稳定 ≥ 2 周"} [N]
+- {化验阈值，如"PLT ≥ 50 + Fib ≥ 1.5 + 24h 无活动出血"}[N]
+- {时间窗（脑出血后 2 周–6 个月相对安全）} [N]
+
+**方案分层**：
+
+- PLT ≥ 50 → {LMWH 全量}[N]
+- PLT 25–50 → {LMWH 半量 + 严密监测}[N]
+- PLT < 25 → {暂停抗凝，机械预防 + 输 PLT 后再评估}[N]
+
+**避免**：
+- DOAC 在 PLT < 50 不用（NCCN 2025）[N]
+- {可回收滤网应在 3 个月内取出（PREPIC2）}[N]
+
+---
+
+## 关键试验 / 指南速引（可选，作行内 [N] 的跳转锚）
+
+| 简称 | 结论 | 本例应用 |
+|---|---|---|
+| **CLOT (NEJM 2003)** | LMWH > VKA 用于 CAT 长期 | 路径 B 首选 |
+| **CARAVAGGIO (NEJM 2020)** | 阿哌沙班 non-inferior（不含脑癌） | 本例脑转移 → 不适用 |
+| **PREPIC2 (JAMA 2015)** | IVC 滤网 + 抗凝无获益 | 可回收滤网 3 月内取 |
+| **ISTH 2015 cancer-DIC** | 高纤溶型管理 | 限制 TXA、按表型支持 |
+
+---
+
+## 参考文献
+
+> **格式与标签详见** `cases/_templates/references-style.md`
+> 编号顺序：按文中首次出现顺序排号；同一文献多次引用复用同一编号。
+
+1. Levi M, Scully M. *How I treat disseminated intravascular coagulation*. Blood. 2018;131(8):845-854. [综述]
+2. Wada H, et al. *Management of cancer-associated DIC: guidance from the SSC of the ISTH*. J Thromb Haemost. 2015;13(4):671-675. [指南]
+3. 中国临床肿瘤学会 (CSCO). *肿瘤相关静脉血栓栓塞症预防与治疗指南* (2019). [指南]
+4. Lee AYY, et al. *LMWH vs coumarin for recurrent VTE in cancer (CLOT)*. NEJM. 2003;349(2):146-153. [RCT]
+5. Agnelli G, et al. *Apixaban for VTE associated with cancer (CARAVAGGIO)*. NEJM. 2020;382(17):1599-1607. [RCT]
+6. Mismetti P, et al. *Retrievable IVC filter plus anticoagulation vs anticoagulation alone (PREPIC2)*. JAMA. 2015;313(16):1627-1635. [RCT]
+7. Majeed A, et al. *Management of rivaroxaban/apixaban-associated major bleeding with PCC: a cohort study*. Blood. 2017;130(15):1706-1712. [队列]
+8. NCCN. *Cancer-Associated Venous Thromboembolic Disease, v3.2025*. [指南]
+9. 利伐沙班片说明书. 国家药监局, 2025. [说明书]
+
+---
+
+## PHI 自检（写完即查）
+
+- [ ] 无真实姓名 / 身份证 / 手机 / 完整 MR（仅末 4 位）
+- [ ] 无精确日期（仅 "入科 D5" 或月份）
+- [ ] 无具体单位 / 床号 / 出生地
+- [ ] 详见 `cases/README.md`
