@@ -98,3 +98,6 @@ research/**/manuscript/*_cache/
 *.bak
 output/
 tmp/
+
+# ---- Guideline PDF library (local only; copyrighted, large binaries) ----
+guidelines/_pdfs/**/*.pdf
