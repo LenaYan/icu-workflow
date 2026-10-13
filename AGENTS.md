@@ -132,3 +132,14 @@ icu-workflow/
 - **PHI 安全**：任何处理临床数据 / 病例的会话，先确认是否已去标识化；建议引用 `cases/README.md` 与 `research/_template/checklists/data-deidentification-checklist.md`
 - **数据文件**：`.gitignore` 默认拦截 `*.csv/xlsx/dta/sav/rds` 等数据文件；只允许 `data-dictionary.md` 和 `*-example.csv` 等示意数据进 git；不要绕过
 - 输出末尾如有自然的后续动作（保存笔记、扩展某点、case-based 展开），可主动提议但不强推
+
+---
+
+## 7. ima 知识库 MCP 集成
+
+本项目已通过 MCP 接入腾讯 ima 云端知识库（指南共识库 / 药物库 / 文献库等），工具前缀 `mcp__ima__`。
+
+- **配置位置**：用户级 `~/.kimi-code/mcp.json`（含凭证，不进 git）；server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。MCP 只在新会话注册，配置变更后需重开会话
+- **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库，先 `list_knowledge_bases_full` 选库）；`upload_file` / `import_urls`（新指南、文献入库）
+- **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）
+- **使用边界**：真实病例资料（即使脱敏）不发送给 ima 工具；科室 SOP 库不通过 MCP 暴露；剂量、适应证等关键结论回指南原文核对；ima 检索结果与本地 `guidelines/` 笔记冲突时提示用户
