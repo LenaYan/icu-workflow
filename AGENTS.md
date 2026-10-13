@@ -114,7 +114,7 @@ icu-workflow/
 ## 5. 常用速查（Kimi 在相关问题中可主动调用）
 
 - **机械通气**：Vt 6 mL/kg PBW、Pplat ≤ 30、driving pressure ≤ 15、PEEP 按 ARDSnet table / EPVent-2、prone position ≥ 16 h（PROSEVA）
-- **Sepsis 复苏**：SSC 2021，30 mL/kg crystalloid（个体化），balanced > saline（BaSICS/PLUS 中性、SMART 倾向 balanced），norepinephrine first-line，vasopressin 加用，hydrocortisone 200 mg/d 用于难治休克
+- **Sepsis 复苏**：SSC 2026，初始 ≥30 mL/kg crystalloid（3 h 内，BMI>30 按 adjusted/ideal BW；之后 liberal/restrictive 均可、动态指标指导），balanced > saline（conditional/moderate；TBI 例外用 saline），norepinephrine first-line（可外周启动），NE 爬升加 vasopressin，hydrocortisone 200 mg/d 用于 septic shock（2026 版不再设 refractory 阈值），β-lactam 延长/持续输注为强推荐
 - **AKI/CRRT**：KDIGO + STARRT-AKI（不急于早启动），effluent 20–25 mL/kg/h，RCA 首选（RICH trial）
 - **TBI/NICU**：BTF 4th，CPP 60–70，ICP < 22，hyperosmolar therapy（3% NaCl 优于 mannitol 在 ICP crisis），SAH nimodipine 60 mg q4h
 - **心源性休克**：DanGer Shock（Impella in AMI-CS）、ECMO-CS、norepinephrine > epinephrine（OptimaCC）
