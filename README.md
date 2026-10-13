@@ -1,6 +1,6 @@
 # ICU Workflow — 工作流入口
 
-> 这是给**人**看的入口文档。Claude Code 的协作指令在 `CLAUDE.md`。
+> 这是给**人**看的入口文档。AI 协作指令：Claude Code 读 `CLAUDE.md`，Kimi Code 读 `AGENTS.md`（两份内容保持同步）。
 
 ---
 
@@ -8,8 +8,9 @@
 
 | 路径 | 用途 | 典型动作 |
 |---|---|---|
-| `CLAUDE.md` | Claude Code 项目级指令 | 协作风格、内容边界 |
-| `.claude/settings.local.json` | 项目权限白名单 | 已配置 R/Python/git/常用 shell |
+| `CLAUDE.md` / `AGENTS.md` | 项目级 AI 协作指令（Claude Code / Kimi Code，内容同步） | 协作风格、内容边界 |
+| `.claude/settings.local.json` | Claude Code 项目权限白名单 | 已配置 R/Python/git/常用 shell |
+| `.kimi-code/agents/` | Kimi Code 项目级 sub-agent（icu-consultant） | 床旁会诊式提问可指定 |
 | `cases/_templates/` | 6 个病例模板（SOAP / 系统化 / 交班 / MDT / 死亡讨论 / 转科） | `cp` 即用 |
 | `cases/YYYY-MM/` | 病例记录、查房、交班、疑难病例讨论（**严格去标识化**，见 `cases/README.md`） | 新病例按月放 |
 | `literature/_templates/` | 3 个文献模板（单篇 PICO / 主题综述 / Journal Club） | 读文献起手 |
@@ -21,7 +22,7 @@
 | `research/<project>/` | 科研项目 | 论文写作 |
 | `.gitignore` | 拦截数据文件 / `.DS_Store` / 中间产物 | 已配置 |
 
-会话归档在 `~/.claude/sessions/YYYY-MM-DD-<topic>.md`（不在本目录）。
+会话归档在本目录 `sessions/YYYY-MM-DD-<topic>.md`（AI 工具的自带会话历史由各自 CLI 管理）。
 
 ---
 
@@ -58,7 +59,7 @@
 → 在 `research/<project>/` 下分 `data/ analysis/ figures/ manuscript/`；告诉 Claude PICO 与数据字典，统计代码默认 R（tidyverse + survival + tableone + cmprsk + MatchIt + mice）。
 
 ### 启动新会话
-→ Claude 会自动读 `CLAUDE.md`（项目级指令）+ `~/.claude/projects/.../memory/MEMORY.md`（个人 memory）。新会话直接进入正题即可。
+→ Claude Code 自动读 `CLAUDE.md`；Kimi Code 自动读 `AGENTS.md`（两份内容同步）。新会话直接进入正题即可。
 
 ---
 

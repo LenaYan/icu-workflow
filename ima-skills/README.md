@@ -1,5 +1,7 @@
 # ima copilot Skill 库
 
+> **定位**：本目录是已上传到腾讯 ima 知识库的自定义 Skill 的**备份存档**，不是本项目的本地可执行 skill——Kimi Code / Claude Code 均不会扫描此目录，正文中的「知识库」指的是 ima 云端库。后续如要改造成 Kimi Code 本地可执行的 skill（移到 `.kimi-code/skills/`，把「检索知识库」改写为检索本地 `guidelines/`），属于重新设计，见文末「本地化的影响」。
+
 腾讯 ima copilot 的自定义 Skill 指令，配合 ima 知识库使用。
 
 **导入方式**：ima 的「添加 Skill」支持 ZIP / MD（≤10MB），MD 必须带 YAML
@@ -48,3 +50,12 @@ ima 知识库分库方案：指南共识库、药物库、文献库、科室 SOP
 - ima 的 RAG 可能检索不全或引用错位，剂量、适应证等关键结论回原文核对。
 - 第三方 Skill 广场和 MCP 不要接入含科室资料的知识库。
 - 新增指南入库（BACKLOG 补齐）后，回这里更新对应 skill 的「已知缺口」表述。
+
+## 本地化的影响（备忘）
+
+若以后把这批 skill 改造成 Kimi Code 本地可执行版本（`.kimi-code/skills/`），需要重新设计而非平移：
+
+- **「知识库」不存在于本地**：ima 的「指南共识库 / 药物库 / 文献库」对应到本地只有 `guidelines/<topic>/` 的人工整理笔记（MD）和 `guidelines/_pdfs/` 的原始 PDF；本地 skill 只能用 Grep/Read 检索 MD 笔记，PDF 全文检索能力有限，「库内优先、禁止模型记忆」的约束强度会弱于 ima 版。
+- **frontmatter 要补齐**：ima 只要求 `name` + `description`；Kimi 建议补 `whenToUse`，且注意同名 skill 项目级优先于用户级。
+- **目录形式**：13 个 skill 目前是平铺单文件（flat form 可直接被 `.kimi-code/skills/` 扫描）；如果某个 skill 需要附带本地参考材料（如剂量表），要改成目录形式 `<name>/SKILL.md`。
+- **保留 ima 版**：本目录作为 ima 侧备份不动，本地化版本另放 `.kimi-code/skills/`，两边各自演进。

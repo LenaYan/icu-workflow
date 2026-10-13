@@ -2,6 +2,8 @@
 
 本目录用于国内顶尖三甲医院 ICU 临床医生的日常工作流：病例梳理、文献阅读、指南查询、科研与论文写作。该文件是给 Claude Code 的项目级指令，定义在本目录下默认的协作风格、内容边界与组织结构。
 
+> **双栈说明**：本项目同时支持 Claude Code（`CLAUDE.md` + `.claude/`）与 Kimi Code（`AGENTS.md` + `.kimi-code/`）。本文件与 `AGENTS.md` 内容保持一致，修改任一文件时请同步另一份。
+
 ---
 
 ## 1. 用户身份（User）
@@ -83,7 +85,10 @@ ICU 主治/高年资医生，亚专业覆盖：
 
 ```
 icu-workflow/
-├── CLAUDE.md                  # 本文件
+├── CLAUDE.md                  # 本文件（Claude Code 项目级指令）
+├── AGENTS.md                  # Kimi Code 项目级指令（内容与本文件同步）
+├── .kimi-code/                # Kimi Code 项目配置
+│   └── agents/                # 项目级 sub-agent（如 icu-consultant.md）
 ├── .claude/                   # Claude Code 项目配置
 │   └── settings.local.json    # 项目级权限/配置（按需）
 ├── cases/                     # 病例记录、查房、交班、疑难病例讨论

@@ -20,6 +20,9 @@
 *.swo
 *~
 
+# ---- Kimi Code ----
+.kimi-code/local.toml
+
 # ---- Python ----
 __pycache__/
 *.py[cod]
