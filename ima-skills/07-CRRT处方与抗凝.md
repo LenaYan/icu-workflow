@@ -1,3 +1,8 @@
+---
+name: crrt-prescription-anticoagulation
+description: CRRT 处方与抗凝——根据体重、目标剂量、凝血状态与离子水平生成 CRRT 处方（模式、剂量、置换液）、枸橼酸/肝素抗凝方案与监测频率。上机、调剂量、抗凝选择、电解质紊乱时使用。
+---
+
 # Skill：CRRT 处方与抗凝
 
 ## 适用场景

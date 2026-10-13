@@ -7,14 +7,14 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 
 ## Upload rules for ima
 
-| Folder | Upload to ima? | Reason |
-|---|---|---|
-| Topic folders (sepsis, ARDS-ventilation, …) | Yes | Current versions |
-| `china-consensus/` | Yes | Most are English OA versions — note `-EN` suffix |
-| `drug-reference/` | Yes | Dose-checking support documents (consensus, reviews, NHSA list); separate from drug labels |
-| `drug-labels/{antimicrobials,anticoagulants,…}/` (`-CN`) | Yes | NMPA-approved Chinese labels |
-| `drug-labels/_FDA-reference-only/` | **No** | US labels; doses, units and indications differ from NMPA (see caveats) |
-| `_superseded/` | **No** | Replaced by newer versions; would pollute RAG retrieval |
+| Folder                                                   | Upload to ima? | Reason                                                                                     |
+| -------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------ |
+| Topic folders (sepsis, ARDS-ventilation, …)              | Yes            | Current versions                                                                           |
+| `china-consensus/`                                       | Yes            | Most are English OA versions — note `-EN` suffix                                           |
+| `drug-reference/`                                        | Yes            | Dose-checking support documents (consensus, reviews, NHSA list); separate from drug labels |
+| `drug-labels/{antimicrobials,anticoagulants,…}/` (`-CN`) | Yes            | NMPA-approved Chinese labels                                                               |
+| `drug-labels/_FDA-reference-only/`                       | **No**         | US labels; doses, units and indications differ from NMPA (see caveats)                     |
+| `_superseded/`                                           | **No**         | Replaced by newer versions; would pollute RAG retrieval                                    |
 
 ## Inventory (70 PDFs current + 3 superseded)
 

@@ -1,7 +1,11 @@
 # ima copilot Skill 库
 
-腾讯 ima copilot 的自定义 Skill 指令，配合 ima 知识库使用。每个 `.md` 文件的
-全文直接粘贴进 ima copilot 的 Skill 编辑框即可。
+腾讯 ima copilot 的自定义 Skill 指令，配合 ima 知识库使用。
+
+**导入方式**：ima 的「添加 Skill」支持 ZIP / MD（≤10MB），MD 必须带 YAML
+frontmatter（`name` + `description`）。本目录文件已带 frontmatter，在 ima
+里逐个上传 `.md` 文件即可（不是复制粘贴正文）。`name` 用了小写英文 slug
+（兼容性格式），显示名以 ima 解析为准。
 
 知识库素材来源：`guidelines/_pdfs/`（见 `INDEX.md` 与 `BACKLOG.md`）。
 ima 知识库分库方案：指南共识库、药物库、文献库、科室 SOP 库（院内规定先确认）、教学库。

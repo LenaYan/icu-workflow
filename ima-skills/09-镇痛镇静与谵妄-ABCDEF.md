@@ -1,3 +1,8 @@
+---
+name: sedation-delirium-abcdef
+description: 镇痛镇静与谵妄（ABCDEF）——根据镇静镇痛目标与血流动力学/肝肾功能，给出药物选择、滴定方案、每日唤醒（SAT/SBT）联动与 ABCDEF bundle 核查清单。RASS/CAM-ICU 异常、脱机前镇静策略调整时使用。
+---
+
 # Skill：镇痛镇静与谵妄（ABCDEF）
 
 ## 适用场景

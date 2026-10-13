@@ -1,3 +1,8 @@
+---
+name: ventilation-ards-weaning
+description: 机械通气 / ARDS 与脱机——根据 VT/PEEP/驱动压/平台压/氧合指数给出参数建议、俯卧位与复张时机、ARDS 分层升级路径和 SBT 脱机路径。呼吸机参数设定、氧合恶化、脱机评估时使用。
+---
+
 # Skill：机械通气 / ARDS 与脱机
 
 ## 适用场景
