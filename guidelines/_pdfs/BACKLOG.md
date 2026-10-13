@@ -2,6 +2,8 @@
 
 Gaps remaining after the 2026-10-09/10/11 download rounds. Source library index: `INDEX.md`.
 
+Scope note (2026-10-13): sections 1–4 track the guideline/drug-label PDF library; sections 5–6 track non-guideline knowledge assets identified in the 2026-10-13 knowledge-base review (ima 医学知识库 currently holds 47,818 items; subscribed third-party KBs trimmed to 青禾重症 / 医院AI药师 / 临床医学教材第十版 as the actively queried set).
+
 When you obtain a file: save it under the target folder below using the
 `YYYY-ORG-topic.pdf` naming convention, verify it is a real PDF with the expected
 title, then update `INDEX.md` (add to Inventory, remove from this backlog).
@@ -76,3 +78,32 @@ Chrome on 2026-10-09; a manual browser session works.
   final not yet released. Replace `kidney-AKI-CRRT/2012-KDIGO-AKI-guideline.pdf` when published.
 - BTF severe TBI: 4th ed (2016) still current; BTF 2026 published Penetrating TBI 2nd ed
   (10.1227/neu.0000000000003738) — separate guideline, consider adding if relevant.
+
+## 5. 院内知识资产（非指南类；2026-10-13 知识库盘点新增）
+
+ima 医学知识库目前只有"通用证据层"（指南/说明书），缺"本院实践层"。按高频 × 高风险排序，均为科室/院内渠道获取，不涉及 PHI：
+
+| 资产 | 用途 | 获取途径 | 优先级 |
+|---|---|---|---|
+| **本院药敏谱**（年度 antibiogram + ICU 病区分离株数据） | 经验性抗感染方案的地基；指南给通用方案，本院耐药谱决定起手药 | 检验科/院感科年度报告 | ★★★ 最高 |
+| **静配/输注手册**（浓度、相容性、输注速度、避光、配伍禁忌） | 夜班高频问题；护士执行核对 | 静配中心/药剂科 | ★★★ |
+| **设备操作卡**（本院在用机型的呼吸机、CRRT、ECMO、IABP、超声：操作、报警、排障） | 指南不覆盖"这台机器报警怎么办" | 设备科/厂家随机手册 | ★★ |
+| **科室 SOP**（镇静镇痛、CRRT 抗凝、ECMO 路径、转入转出标准） | 统一科室实践；新入科培训 | 科室内部文件 | ★★ |
+| 医保/DRG 本院文件（限制用药审批、ICU 分组规则） | 医嘱的真实约束 | 医保办 | ★ 可选 |
+
+注意：科室 SOP 两个前提——院内规定允许外传至云端 + 只入私有库（不接第三方 skill 广场、不共享）。药敏谱为聚合数据、无 PHI，脱敏（去院名可选）后可入 ima。
+
+## 6. 文献精读库（landmark trials；2026-10-13 知识库盘点新增）
+
+ima 侧"文献库"分库未建，本地 `literature/notes/` 为空。指南回答"做什么"，原文回答"证据有多硬"——会诊被挑战、做科研设计时靠后者。按亚专科的起点清单（NEJM/JAMA/Lancet/ICM/CCM 原文 PDF）：
+
+- **ARDS/机械通气**：ARMA、PROSEVA、EOLIA、EPVent-2、DEXA-ARDS、ART
+- **Sepsis**：ProCESS/ARISE/ProMISe、CLOVERS、CLASSIC、SMART/BaSICS/PLUS、ADRENAL/APROCCHSS、ANDROMEDA-SHOCK(-2)、BLING III、BALANCE、ADAPT-Sepsis、LOVIT
+- **AKI/CRRT**：STARRT-AKI、AKIKI/AKIKI2、ELAIN、IDEAL-ICU、RENAL、ATN、RICH
+- **NICU**：CRASH-3、DECRA、RESCUEicp、POLAR、INTERACT-2/ATACH-2、ENRICH、TTM/TTM2、ESETT
+- **CV/MCS**：DanGer Shock、ECLS-SHOCK、ECMO-CS、IABP-SHOCK II、OptimaCC、SOAP II
+- **镇静/谵妄**：PADIS 相关原始试验、MENDS2、SEDCOM、SPICE III
+- **营养**：NUTRIREA-2/3、EFFORT、EPaNIC、CALORIES
+- **输血**：TRICC、TRISS、FOUNT（如已发表）
+
+工作流：拿到 PDF → 传 ima 文献库（待建分库）→ 本地用 `literature/_templates/single-paper-PICO.md` 写笔记存 `literature/notes/`（命名 `{TRIAL-NAME}-{Year}.md`）→ 每 3–5 篇同主题归并到 `literature/topics/`。多数为付费墙文献，走医院图书馆/机构访问。
