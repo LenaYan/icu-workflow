@@ -88,7 +88,8 @@ icu-workflow/
 ├── AGENTS.md                  # 本文件（Kimi Code 项目级指令）
 ├── CLAUDE.md                  # Claude Code 项目级指令（内容与本文件同步）
 ├── .kimi-code/                # Kimi Code 项目配置
-│   └── agents/                # 项目级 sub-agent（如 icu-consultant.md）
+│   ├── agents/                # 项目级 sub-agent（如 icu-consultant.md）
+│   └── skills/                # 项目级 Skill（ima-skills 薄封装 + 编排 workflow，见 §8）
 ├── .claude/                   # Claude Code 项目配置
 │   └── settings.local.json    # 项目级权限/配置（按需）
 ├── cases/                     # 病例记录、查房、交班、疑难病例讨论
@@ -139,7 +140,38 @@ icu-workflow/
 
 本项目已通过 MCP 接入腾讯 ima 云端知识库（指南共识库 / 药物库 / 文献库等），工具前缀 `mcp__ima__`。
 
-- **配置位置**：用户级 `~/.kimi-code/mcp.json`（含凭证，不进 git）；server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。MCP 只在新会话注册，配置变更后需重开会话
-- **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库，先 `list_knowledge_bases_full` 选库）；`upload_file` / `import_urls`（新指南、文献入库）
-- **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）
+- **配置位置（双份，需同步维护）**：Kimi Code CLI 读用户级 `~/.kimi-code/mcp.json`；Kimi 桌面客户端读自己的内核 home `~/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/kimi-code/home/mcp.json`——两者是独立文件、不互相同步。重抓 `IMA_COOKIE` 后必须**同时更新这两处**，否则报错 `600001` 的一侧就是没更新的那份。server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。MCP 只在新会话注册，配置变更后需重开会话
+- **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库，先 `list_knowledge_bases_full` 选库）；`upload_file` / `import_urls`（新指南、文献入库——**必须传 `folder_id` 归档到对应子目录**，归档流程与文件夹 ID 对照见 `ima-skills/kb-folder-ids.md`；按本地路径/内容分类，**无匹配类别时先问用户是否新建子目录**，同意后 `scripts/ima_kb_admin.py mkdir` 创建并回填 ID 表，不要落在根目录）；MCP 无 move/delete/mkdir 接口，整理已有条目用 `scripts/ima_kb_admin.py`（kbs/folders/ls/mv/mkdir/rm）
+- **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）。重抓后运行 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 可一次性同步更新两份配置（自动备份、回读校验、日志只显示脱敏凭证）
 - **使用边界**：真实病例资料（即使脱敏）不发送给 ima 工具；科室 SOP 库不通过 MCP 暴露；剂量、适应证等关键结论回指南原文核对；ima 检索结果与本地 `guidelines/` 笔记冲突时提示用户
+
+---
+
+## 8. 项目 Skills 与编排 workflow（CLI + 桌面客户端共用）
+
+`.kimi-code/skills/` 下的项目级 Skill 会被 Kimi Code CLI 和 Kimi 桌面客户端（打开本目录工作区时）**自动发现**——两侧读同一份文件，无需双份维护（与 §7 MCP 的双文件维护不同）。可 `/skill:<name>` 手动调用，或由模型按 description/whenToUse 自动触发；skill 在会话启动时扫描，新增或修改后需新开会话生效。
+
+**临床工作流 skill**（13 个，薄封装：frontmatter + 本地化适配前言，流程正文单源在 `ima-skills/NN-*.md`，正文中的「知识库」经 ima MCP 访问）：
+
+| Skill | 用途 |
+|---|---|
+| `guideline-lookup` | 指南速查（推荐意见 + 推荐等级 + 出处） |
+| `drug-dose-check` | 药物剂量核对（肝肾/CRRT 调整、TDM、医保） |
+| `literature-scan` | 文献速读（PICO/效应量/偏倚风险） |
+| `antimicrobial-stewardship` | 抗菌药物方案（AMS） |
+| `shock-hemodynamics` | 休克与血流动力学评估 |
+| `ventilation-ards-weaning` | 机械通气 / ARDS 与脱机 |
+| `crrt-prescription-anticoagulation` | CRRT 处方与抗凝 |
+| `acid-base-electrolytes` | 酸碱与电解质分析 |
+| `sedation-delirium-abcdef` | 镇痛镇静与谵妄（ABCDEF） |
+| `nutrition-support` | 营养支持 |
+| `thrombosis-anticoagulation-balance` | 血栓与抗凝平衡 |
+| `medical-record-drafting` | 病历文书生成 |
+| `deidentify-evidence-search` | 去标识化 + 循证检索 |
+
+**编排 workflow skill**（4 个，跨步骤流程）：
+
+- `case-deep-analysis` — 深度病例分析：脱敏确认 → `icu-consultant` 会诊交叉验证 → `case-analysis.md` 模板输出 → 引用核查 → PHI 自检 → 归档 `cases/YYYY-MM/`
+- `rounds-handover` — 查房交班：by-system/SOAP → 三段式交班 → 归档
+- `kb-ingest` — 指南/文献入 ima 库：分类 → folder_id → 查重 → 上传 → 回填 ID 表
+- `session-archive` — 会话纪要归档 `sessions/YYYY-MM-DD-<topic>.md`
