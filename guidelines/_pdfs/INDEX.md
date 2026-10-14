@@ -1,6 +1,6 @@
 # ICU Guideline & Drug Label PDF Library — Index
 
-Last updated: 2026-10-11. PDFs are local only (git-ignored); this index is tracked.
+Last updated: 2026-10-14. PDFs are local only (git-ignored); this index is tracked.
 
 Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" and
 "Drug Labels") and for local lookup by the `icu-consultant` agent.
@@ -16,7 +16,7 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | `drug-labels/_FDA-reference-only/`                       | **No**         | US labels; doses, units and indications differ from NMPA (see caveats)                     |
 | `_superseded/`                                           | **No**         | Replaced by newer versions; would pollute RAG retrieval                                    |
 
-## Inventory (70 PDFs current + 3 superseded)
+## Inventory (80 PDFs + 1 HTML full-text archive + 13 NMPA label MD transcriptions current + 3 superseded)
 
 ### Sepsis
 | File | Pages | DOI |
@@ -61,12 +61,16 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 |---|---|---|
 | hemodynamics-fluids/2026-SRLF-SFC-cardiogenic-shock-expert-recommendations.pdf | 19 | 10.1016/j.aicoj.2026.100038 |
 | hemodynamics-fluids/2024-SCCM-ESICM-corticosteroids-focused-update.pdf | 15 | 10.1097/CCM.0000000000006172 |
+| hemodynamics-fluids/2025-ESICM-circulatory-shock-hemodynamic-monitoring.pdf | 43 | 10.1007/s00134-025-08137-z (EUR repository version) |
+| hemodynamics-fluids/2024-ESICM-fluid-therapy-part1-choice-of-fluids.pdf | 20 | 10.1007/s00134-024-07369-9 (EUR repository version) |
+| hemodynamics-fluids/2025-ESICM-fluid-therapy-part2-volume-of-fluids.pdf | 18 | 10.1007/s00134-025-07840-1 |
 
 ### Nutrition
 | File | Pages | DOI |
 |---|---|---|
 | nutrition/2019-ESPEN-ICU-nutrition-guideline.pdf | 32 | 10.1016/j.clnu.2018.08.037 |
 | nutrition/2023-ESPEN-ICU-nutrition-guideline-update.pdf | 19 | 10.1016/j.clnu.2023.07.011 |
+| nutrition/2022-ASPEN-SCCM-critical-care-nutrition-guideline.pdf | 30 | 10.1002/jpen.2267 |
 
 ### Transfusion / coagulation
 | File | Pages | DOI |
@@ -75,6 +79,7 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | transfusion-coagulation/2025-CHEST-RBC-transfusion-critically-ill-guideline.pdf | 13 | 10.1016/j.chest.2024.09.016 |
 | transfusion-coagulation/2025-CHEST-plasma-platelet-transfusion-critically-ill-guideline.pdf | 16 | 10.1016/j.chest.2025.02.029 |
 | transfusion-coagulation/2023-European-trauma-major-bleeding-coagulopathy-guideline-6th-ed.pdf | 45 | 10.1186/s13054-023-04327-7 |
+| transfusion-coagulation/2025-ISTH-DIC-definition-scoring-update.pdf | 8 | 10.1016/j.jtha.2025.03.038 |
 
 ### Infection / antimicrobials
 | File | Pages | DOI |
@@ -106,6 +111,11 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | 2026-CSCCM-CLABSI-part2-treatment-EN.pdf | 17 | CSCCM | 10.1016/j.jointm.2025.10.009 |
 | 2023-polymyxin-B-TDM-chinese-consensus-EN.pdf | 13 | SMA Infection & Chemotherapy + CPS TDM Committee | 10.1631/jzus.B2200466 (PMC10260281) |
 | 2024-CRGNB-infection-guideline-CN.pdf | 17 | Chinese multidisciplinary expert group (CJIC) | Chinese version of JMII 10.1016/j.jmii.2023.01.017 (Chin J Infect Chemother 2024;24(2):135-151) |
+| 2018-CSCCM-ICU-analgesia-sedation-guideline-CN.pdf | 18 | CSCCM | 10.3760/cma.j.issn.2095-4352.2018.06.001 |
+| 2023-Chinese-AKI-clinical-practice-guideline-CN.pdf | 35 | Natl CKD Clinical Research Center + CMDA Nephrology | 10.3760/cma.j.cn112137-20230802-00133 |
+| 2026-CRE-lab-diagnosis-prevention-treatment-consensus-CN.pdf | 16 | CMITA Clinical Microbiology + CAP Respiratory | 10.3760/cma.j.cn112137-20260128-00313 |
+| 2018-antimicrobial-PK-PD-clinical-application-consensus-CN.pdf | 38 | CMEA Infection Committee | 10.3760/cma.j.issn.1001-0939.2018.06.004 (**scanned PDF, no text layer — ima RAG extraction will be poor; replace with text version if found**) |
+| 2026-CRRT-prescription-fluid-guideline-CN.html | — (HTML full-text archive, 22 recommendations) | CMITA Critical Care + China Critical Blood Purification Group | 10.3760/cma.j.cn112137-20260108-00083 (journal-layout PDF still wanted — medlive 38729 or yiigle institutional) |
 
 ### Drug reference — dose-checking support (`drug-reference/`)
 | File | Pages | DOI / URL |
@@ -114,6 +124,7 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | 2020-vancomycin-TDM-international-consensus.pdf | 31 | 10.1093/ajhp/zxaa036 (official ASHP-hosted PDF) |
 | 2019-polymyxin-B-international-consensus.pdf | 46 | 10.1002/phar.2209 (PMC7437259 author manuscript) |
 | 2025-antimicrobial-dosing-AKI-CRRT-review.pdf | 18 | 10.5527/wjn.v14.i3.102667 (PMC12476711) |
+| 2024-CRRT-antimicrobial-dosing-consensus-CN.pdf | 17 | 10.3760/cma.j.cn441217-20230906-00906 (Chin J Nephrol 2024;40(2):158-174) |
 
 ### Drug labels — NMPA Chinese (`drug-labels/`)
 | File | Pages | Last revised |
@@ -124,6 +135,18 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | antimicrobials/voriconazole-injection-Pfizer-Vfend-2026-CN.pdf | 33 | 2026-07-28 |
 | anticoagulants/enoxaparin-Sanofi-Clexane-2026-CN.pdf | 26 | 2026-08-12 |
 | anticoagulants/dalteparin-Pfizer-Fragmin-2025-CN.pdf | 10 | 2025-07-01 |
+
+### Drug labels — NMPA transcribed to Markdown (`drug-labels/*/…-NMPA-CN.md`, 2026-10-13)
+
+13 label transcriptions from public label databases (yaozh.com, manufacturer label
+pages; NMPA approval numbers recorded per file). Interim substitutes until official
+journal-style label PDFs are obtained; MD text is searchable and ima-uploadable.
+Known gaps: meropenem file lacks the PK section; vancomycin PK tables were images.
+Note: argatroban's NMPA indication does NOT include HIT (off-label use in China).
+
+- `vasoactive-sedation/`: norepinephrine, propofol (Diprivan), dexmedetomidine, midazolam, fentanyl, remifentanil
+- `antimicrobials/`: meropenem (Mepem), vancomycin (Vancocin), piperacillin-tazobactam (Tazocin), cefoperazone-sulbactam (Sulperazon), imipenem-cilastatin (Tienam)
+- `anticoagulants/`: heparin sodium, argatroban (Novastan)
 
 ### Drug labels — FDA reference only (`drug-labels/_FDA-reference-only/`, do not upload)
 meropenem, imipenem-cilastatin, piperacillin-tazobactam (premixed solution label),
@@ -147,20 +170,16 @@ Not found at all: levosimendan (not FDA-approved; no public Chinese label PDF lo
 
 ## Manual download list (browser or institutional access)
 
-Priority A — current core guidelines; note the four ICM/ESICM items below turned out to be
-**paywalled** (Springer shows "Buy article PDF €39.95"), not merely script-blocked — they need
-institutional access or a purchased copy:
+Priority A — current core guidelines:
 | Document | DOI |
 |---|---|
-| ESICM 2025 circulatory shock & hemodynamic monitoring (paywalled) | 10.1007/s00134-025-08137-z |
-| ESICM fluid therapy Part 1 (2024) / Part 2 (2025) / Part 3 (2025) (all paywalled) | 10.1007/s00134-024-07369-9 · 10.1007/s00134-025-07840-1 · 10.1007/s00134-025-08058-x |
+| ESICM fluid therapy Part 3: fluid removal at de-escalation (2025) (paywalled; Parts 1–2 and the ESICM 2025 shock guideline were obtained 2026-10-13 via the EUR/Erasmus repository versions) | 10.1007/s00134-025-08058-x |
 
 Priority B — international, secondary:
 | Document | DOI / URL |
 |---|---|
 | ERS/ESICM/ESCMID/ALAT HAP/VAP 2017 | 10.1183/13993003.00582-2017 |
-| ASPEN/SCCM critical care nutrition 2016 / ASPEN 2022 | 10.1177/0148607115621863 · 10.1002/jpen.2267 |
-| ISTH DIC definition update 2025 | 10.1016/j.jtha.2025.03.038 |
+| ASPEN/SCCM critical care nutrition 2016 (2022 update now in `nutrition/`) | 10.1177/0148607115621863 |
 | ABCDEF bundle / ICU Liberation (CCM 2019) | 10.1097/CCM.0000000000003482 |
 | CIRCI guideline 2017 (ICM version, bronze OA) | 10.1007/s00134-017-4919-5 |
 | IDSA 2026 AMR Gram-negative guidance (HTML only) | idsociety.org/practice-guideline/amr-guidance/ |
@@ -168,18 +187,15 @@ Priority B — international, secondary:
 Priority C — Chinese originals (yiigle / CMA journals; institutional access):
 | Document | DOI |
 |---|---|
-| CSCCM adult ICU analgesia & sedation guideline 2018 | 10.3760/cma.j.issn.2095-4352.2018.06.001 |
-| Chinese AKI clinical practice guideline 2023 (Natl Med J China) | 10.3760/cma.j.cn112137-20230802-00133 |
-| CRRT replacement/dialysate fluid guideline 2026 | 10.3760/cma.j.cn112137-20260108-00083 |
-| CRE microbiological diagnosis & treatment consensus 2026 | 10.3760/cma.j.cn112137-20260128-00313 |
+| CRRT replacement/dialysate fluid guideline 2026 — HTML full-text archive now in `china-consensus/`; journal-layout PDF still wanted (medlive 38729 / yiigle institutional) | 10.3760/cma.j.cn112137-20260108-00083 |
 | Sepsis-induced coagulopathy Chinese consensus 2024 (PLA Med J; may be free in browser) | 10.11855/j.issn.0577-7402.1189.2024.0918 |
-| Antimicrobial PK/PD clinical application expert consensus 2018 (Chinese J Tuberc Respir Dis 41(6):409; yiigle returns 401 security verification) | 10.3760/cma.j.issn.1001-0939.2018.06.004 |
-| CRRT antimicrobial dosing optimization expert consensus 2024 (Chin J Nephrol; no English OA version found) | 10.3760/cma.j.cn441217-20230906-00906 |
 | CRGNB infection guideline 2023 (JMII English original; OA but ScienceDirect Cloudflare blocks scripts — Chinese version already in library) | 10.1016/j.jmii.2023.01.017 |
 | Critical care ultrasound / hemodynamic therapy / ARDS ventilation CSCCM consensus | Not verified — search yiigle |
 
-Drug labels — NMPA Chinese versions still needed (CDE "中国上市药品目录集", hospital pharmacy, or manufacturer medical affairs):
-meropenem, imipenem-cilastatin, piperacillin-tazobactam, vancomycin, polymyxin B,
-caspofungin, norepinephrine, pituitrin / terlipressin (verify AVP NMPA status),
-dobutamine, levosimendan, dexmedetomidine, propofol, remifentanil, heparin,
-argatroban, bivalirudin. Prefer the manufacturer actually stocked by the hospital.
+Drug labels — NMPA Chinese versions still needed (CDE "中国上市药品目录集", hospital pharmacy, or manufacturer medical affairs).
+Obtained 2026-10-13 as MD transcriptions (see inventory above): meropenem, imipenem-cilastatin,
+piperacillin-tazobactam, vancomycin, norepinephrine, dexmedetomidine, propofol, remifentanil,
+heparin, argatroban (+ midazolam, fentanyl, cefoperazone-sulbactam) — official label PDFs still
+preferred as replacements. Nothing obtained yet: polymyxin B, caspofungin, pituitrin / terlipressin
+(verify AVP NMPA status), dobutamine, levosimendan, bivalirudin. Prefer the manufacturer actually
+stocked by the hospital.

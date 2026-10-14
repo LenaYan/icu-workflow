@@ -15,18 +15,17 @@ script failures were bot challenges in front of a paywall, not free-to-read cont
 
 | Document | DOI | Target folder |
 |---|---|---|
-| ESICM 2025 circulatory shock & hemodynamic monitoring (Monnet, ICM 51:1971) | 10.1007/s00134-025-08137-z | hemodynamics-fluids/ |
-| ESICM fluid therapy Part 1: choice of resuscitation fluids (2024) | 10.1007/s00134-024-07369-9 | hemodynamics-fluids/ |
-| ESICM fluid therapy Part 2: volume of resuscitation fluids (2025) | 10.1007/s00134-025-07840-1 | hemodynamics-fluids/ |
 | ESICM fluid therapy Part 3: fluid removal at de-escalation (2025) | 10.1007/s00134-025-08058-x | hemodynamics-fluids/ |
+
+Obtained 2026-10-13 via EUR/Erasmus repository versions (no longer needed): ESICM 2025
+circulatory shock guideline, ESICM fluid therapy Part 1 (2024) and Part 2 (2025).
 
 Also paywalled / not OA (lower priority):
 - NCS 2023 aneurysmal SAH guideline — 10.1007/s12028-023-01713-5 → neuro-TBI/
 - NCS 2025 ICH seizure prophylaxis — 10.1007/s12028-024-02183-z → neuro-TBI/
 - Berlin ARDS definition 2012 (JAMA) — 10.1001/jama.2012.5669 → ARDS-ventilation/
 - ESAIC severe peri-operative bleeding 2023 — 10.1097/EJA.0000000000001803 → transfusion-coagulation/
-- ISTH DIC definition update 2025 — 10.1016/j.jtha.2025.03.038 → transfusion-coagulation/
-- ASPEN/SCCM nutrition 2016 — 10.1177/0148607115621863; ASPEN 2022 — 10.1002/jpen.2267 → nutrition/
+- ASPEN/SCCM nutrition 2016 — 10.1177/0148607115621863 → nutrition/ (ASPEN 2022 obtained 2026-10-13)
 - ABCDEF bundle / ICU Liberation (CCM 2019) — 10.1097/CCM.0000000000003482 → general-ICU/
 - CIRCI guideline 2017 (ICM version) — 10.1007/s00134-017-4919-5 → hemodynamics-fluids/
 - SCCM clinical deterioration outside ICU 2024 — 10.1097/CCM.0000000000006072 → general-ICU/
@@ -35,17 +34,17 @@ Also paywalled / not OA (lower priority):
 
 | Document | DOI | Target folder |
 |---|---|---|
-| CSCCM adult ICU analgesia & sedation guideline 2018 | 10.3760/cma.j.issn.2095-4352.2018.06.001 | china-consensus/ |
-| Chinese AKI clinical practice guideline 2023 (Natl Med J China) | 10.3760/cma.j.cn112137-20230802-00133 | china-consensus/ |
-| CRRT replacement/dialysate fluid guideline 2026 | 10.3760/cma.j.cn112137-20260108-00083 | china-consensus/ |
-| CRE microbiological diagnosis & treatment consensus 2026 | 10.3760/cma.j.cn112137-20260128-00313 | china-consensus/ |
+| CRRT replacement/dialysate fluid guideline 2026 — HTML full-text archive saved 2026-10-13 (`china-consensus/2026-CRRT-prescription-fluid-guideline-CN.html`, all 22 recommendations); journal-layout PDF still wanted (medlive 38729 / yiigle institutional) | 10.3760/cma.j.cn112137-20260108-00083 | china-consensus/ |
 | Sepsis-induced coagulopathy consensus 2024 (PLA Med J; may be free in browser) | 10.11855/j.issn.0577-7402.1189.2024.0918 | china-consensus/ |
-| Antimicrobial PK/PD clinical application expert consensus 2018 (Chinese J Tuberc Respir Dis 41(6):409-446; yiigle returns 401 安全验证 for scripts, tried 2026-10-11) | 10.3760/cma.j.issn.1001-0939.2018.06.004 | china-consensus/ |
-| CRRT antimicrobial dosing optimization expert consensus 2024 (中华肾脏病杂志; no English OA version; Chinese original only) | 10.3760/cma.j.cn441217-20230906-00906 | drug-reference/ |
 | Chinese emergency sepsis-DIC consensus 2017 | 10.3760/cma.j.issn.2095-4352.2017.07.001 | china-consensus/ |
 | Sepsis-induced immunosuppression consensus 2020 (Chinese original; 2022 English OA version already in library) | 10.3760/cma.j.cn121430-20201123-00719 | china-consensus/ |
 | Vancomycin TDM guideline 2020 (Chinese Pharmacological Society; CID, not OA) | 10.1093/cid/ciaa1536 | china-consensus/ |
 | Critical care ultrasound consensus; hemodynamic therapy consensus; CSCCM ARDS ventilation consensus | Not verified — search yiigle (中华内科杂志 / 中华危重病急救医学) | china-consensus/ |
+
+Obtained 2026-10-13 (via public mirror/repost sites, verified against journal layout):
+CSCCM ICU analgesia & sedation 2018, Chinese AKI guideline 2023, CRE consensus 2026,
+antimicrobial PK/PD consensus 2018 (**scanned PDF, replace with text version if found**),
+CRRT antimicrobial dosing consensus 2024.
 
 Free-in-browser but bot-blocked (retry via browser):
 - CRGNB infection guideline 2023 (JMII English original, OA; ScienceDirect Cloudflare managed challenge did not clear in headed Chrome on 2026-10-11 — Chinese version already in library as china-consensus/2024-CRGNB-infection-guideline-CN.pdf) — 10.1016/j.jmii.2023.01.017 → china-consensus/
@@ -58,16 +57,22 @@ Optional extras noted during download:
 
 ## 3. NMPA Chinese drug labels — CDE 中国上市药品目录集 / hospital pharmacy / manufacturer medical affairs
 
-14 drugs still only have FDA reference versions (in `drug-labels/_FDA-reference-only/`,
-do NOT upload to ima). Get the label for the manufacturer actually stocked by the hospital:
+13 drugs obtained 2026-10-13 as **MD transcriptions** from public label databases
+(yaozh.com, manufacturer pages; NMPA approval numbers recorded), now under
+`drug-labels/*/` as `*-NMPA-CN.md`: meropenem, imipenem-cilastatin,
+piperacillin-tazobactam, cefoperazone-sulbactam, vancomycin, norepinephrine, propofol,
+dexmedetomidine, midazolam, fentanyl, remifentanil, heparin, argatroban.
+These are interim — replace with official label PDFs when available (meropenem MD lacks
+the PK section; vancomycin PK tables were images).
 
-- Antimicrobials: meropenem (住友 美平), imipenem-cilastatin (MSD 泰能),
-  piperacillin-tazobactam (辉瑞 特治星), vancomycin, polymyxin B, caspofungin (MSD 科赛斯)
-- Vasoactive/sedation: norepinephrine, pituitrin / terlipressin (verify whether AVP
-  itself has NMPA approval), dobutamine, levosimendan (no FDA label exists either —
-  check Orion Simdax or domestic makers 恒瑞/齐鲁), dexmedetomidine (恒瑞 艾贝宁),
-  propofol (费卡 竟安/静安), remifentanil
-- Anticoagulants: heparin sodium, argatroban (田边三菱 诺保思泰), bivalirudin (信立泰 泰加宁)
+Still nothing (only FDA reference versions in `drug-labels/_FDA-reference-only/`,
+do NOT upload to ima):
+
+- Antimicrobials: polymyxin B, caspofungin (MSD 科赛斯)
+- Vasoactive/sedation: pituitrin / terlipressin (verify whether AVP
+  itself has NMPA approval), dobutamine, levosimendan (no FDA label either —
+  check Orion Simdax or domestic makers 恒瑞/齐鲁)
+- Anticoagulants: bivalirudin (信立泰 泰加宁)
 
 Note: CDE website has a JS anti-bot challenge that defeated both curl and headless
 Chrome on 2026-10-09; a manual browser session works.

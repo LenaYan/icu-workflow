@@ -104,3 +104,5 @@ tmp/
 
 # ---- Guideline PDF library (local only; copyrighted, large binaries) ----
 guidelines/_pdfs/**/*.pdf
+guidelines/_pdfs/**/*.html
+guidelines/_pdfs/drug-labels/**/*.md
