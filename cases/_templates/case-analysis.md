@@ -14,6 +14,8 @@ append_to: 系统化-by-system.md
 > 3. 参考文献按 `references-style.md` 格式
 > 4. 同一证据被多次引用复用同一编号
 > 5. 末尾保留 PHI 自检清单
+> 6. 每条处置建议标注依据级别：`【指南原文】/【指南外推】/【推理】`，外推与推理须写出依据链
+> 7. 参考文献每条带核对状态：已回核 / 未核对原文 / 部分支持
 
 ---
 
@@ -114,12 +116,23 @@ append_to: 系统化-by-system.md
 
 ---
 
+## Red flags（立即升级触发线）
+
+> 写给接班者：出现以下任一情况不等查房、立即升级处理。每条须为可判定的客观阈值。
+
+- {如：ROX <3.85 / RR >30 持续 / SpO₂ 需 FiO₂ >60% 维持 → 插管预案}
+- {如：Hb 再降 >10 g/L 或黑便/腹围增大 → 出血排查}
+- {如：关键指标复升越过病因治疗线 → 重启对应治疗}
+
+---
+
 ## 参考文献
 
 > **格式与标签详见** `cases/_templates/references-style.md`
 > 编号顺序：按文中首次出现顺序排号；同一文献多次引用复用同一编号。
+> **每条末尾加核对状态**：已回核 / 未核对原文 / 部分支持。
 
-1. Levi M, Scully M. *How I treat disseminated intravascular coagulation*. Blood. 2018;131(8):845-854. [综述]
+1. Levi M, Scully M. *How I treat disseminated intravascular coagulation*. Blood. 2018;131(8):845-854. [综述]（已回核）
 2. Wada H, et al. *Management of cancer-associated DIC: guidance from the SSC of the ISTH*. J Thromb Haemost. 2015;13(4):671-675. [指南]
 3. 中国临床肿瘤学会 (CSCO). *肿瘤相关静脉血栓栓塞症预防与治疗指南* (2019). [指南]
 4. Lee AYY, et al. *LMWH vs coumarin for recurrent VTE in cancer (CLOT)*. NEJM. 2003;349(2):146-153. [RCT]

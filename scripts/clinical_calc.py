@@ -8,6 +8,12 @@
   python3 scripts/clinical_calc.py vent --pplat 28 --peep 10 [--pbw 60 --vt 360]
   python3 scripts/clinical_calc.py ag --na 140 --cl 105 --hco3 18 [--k 4.5] [--albumin 25]
   python3 scripts/clinical_calc.py na-correct --na 132 --glucose 30
+  python3 scripts/clinical_calc.py rox --spo2 95 --fio2 0.41 --rr 19 [--rr-max 30]
+  python3 scripts/clinical_calc.py pf --pao2 73 --fio2 0.41
+  python3 scripts/clinical_calc.py gik --insulin 8 --volume 500 --rate 50
+  python3 scripts/clinical_calc.py uf --net-uf 100 --weight 70
+  python3 scripts/clinical_calc.py ca-correct --ca 2.0 --albumin 25
+  python3 scripts/clinical_calc.py alk-comp --hco3 31.2 --paco2 33
 """
 
 import argparse
@@ -82,6 +88,76 @@ def cmd_na_correct(a):
     print(f"校正 Na = {a.na} + 1.6 x ({glucose_mg:.0f} - 100)/100 = {corrected:.1f} mmol/L")
 
 
+def cmd_rox(a):
+    """ROX = (SpO2/FiO2)/RR。>4.88 低风险；3.85-4.87 密切监测；<3.85 高危；<2.85 考虑插管。
+    RR 存疑时用 --rr-max 做敏感性分析，禁止以"RR 不准"为由跳过计算。"""
+    def rox(rr):
+        return a.spo2 / a.fio2 / rr
+    def grade(v):
+        return ("低风险（>4.88）" if v > 4.88 else
+                "灰区，密切监测（3.85-4.87）" if v >= 3.85 else
+                "高危，准备插管（2.85-3.85）" if v >= 2.85 else
+                "应考虑插管（<2.85）")
+    print(f"ROX = ({a.spo2}/{a.fio2})/{a.rr} = {rox(a.rr):.1f}  → {grade(rox(a.rr))}")
+    if a.rr_max:
+        print(f"敏感性：RR {a.rr}-{a.rr_max} → ROX {rox(a.rr):.1f}-{rox(a.rr_max):.1f}")
+    print("  注意：阈值为 HFNC 后 12h 验证时点，各研究切点有异质性，动态趋势优先于单点")
+
+
+def cmd_pf(a):
+    """P/F = PaO2/FiO2，Berlin 分层。"""
+    pf = a.pao2 / a.fio2
+    tier = ("正常（>300）" if pf > 300 else
+            "轻度 ARDS（200-300）" if pf > 200 else
+            "中度 ARDS（100-200）" if pf > 100 else
+            "重度 ARDS（≤100）")
+    print(f"P/F = {a.pao2}/{a.fio2} = {pf:.0f}  → {tier}")
+
+
+def cmd_gik(a):
+    """GIK 实际胰岛素速率（U/h）= 胰岛素总量(U) / 液体量(mL) × 泵速(mL/h)。"""
+    per_ml = a.insulin / a.volume
+    uh = per_ml * a.rate
+    print(f"胰岛素浓度 = {a.insulin}/{a.volume} = {per_ml:.3f} U/mL")
+    print(f"实际速率 = {uh:.2f} U/h（泵速 {a.rate} mL/h）")
+    if a.weight:
+        print(f"= {uh / a.weight:.3f} U/kg/h  （HTG-AP 共识降脂剂量 0.1-0.3 U/kg/h）")
+
+
+def cmd_uf(a):
+    """CRRT 净超滤强度 mL/kg/h。队列证据：1.01-1.75 区间 28 天死亡率最低；>1.75 与肾恢复延迟相关。"""
+    r = a.net_uf / a.weight
+    print(f"净超滤强度 = {a.net_uf}/{a.weight} = {r:.2f} mL/kg/h")
+    print(f"  24h 净平衡 = {a.net_uf * 24:.0f} mL")
+    if r > 1.75:
+        print("  警告：>1.75 mL/kg/h，与肾脏恢复延迟相关，应降速")
+    elif r > 1.0:
+        print("  处于 1.01-1.75 区间上限，注意灌注与电解质")
+    else:
+        print("  ≤1.0 mL/kg/h，温和区间")
+
+
+def cmd_ca_correct(a):
+    """白蛋白校正总钙（mg/dL）：corrCa = Ca + 0.8×(4.0 - Alb g/dL)。Alb 单位 g/L 自动换算。"""
+    alb_gdl = a.albumin / 10 if a.albumin > 10 else a.albumin
+    corr = a.ca + 0.8 * (4.0 - alb_gdl)
+    print(f"校正 Ca = {a.ca} + 0.8×(4.0 - {alb_gdl:.1f}) = {corr:.2f} mg/dL（参考 8.5-10.5）")
+    print("  ICU 患者优先用游离钙，校正值仅供无游离钙时参考")
+
+
+def cmd_alk_comp(a):
+    """代碱代偿预期 PaCO2 = 40 + 0.7×(HCO3-24)，判断是否存在呼碱/呼酸叠加。"""
+    expect = 40 + 0.7 * (a.hco3 - 24)
+    print(f"预期 PaCO2 = 40 + 0.7×({a.hco3} - 24) = {expect:.0f} ±2")
+    diff = a.paco2 - expect
+    if abs(diff) <= 2:
+        print(f"实测 {a.paco2} 在预期范围内 → 单纯代碱，呼吸代偿合适")
+    elif diff < -2:
+        print(f"实测 {a.paco2} 低于预期 {diff:.0f} → 代碱合并呼碱（双重碱血症）")
+    else:
+        print(f"实测 {a.paco2} 高于预期 +{diff:.0f} → 代碱合并呼酸")
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -120,6 +196,40 @@ def main():
     s.add_argument("--glucose", type=float, required=True, help="血糖")
     s.add_argument("--glucose-unit", choices=["mmol", "mg"], default="mmol")
     s.set_defaults(f=cmd_na_correct)
+
+    s = sub.add_parser("rox", help="ROX 指数（HFNC 成败预测），支持 RR 敏感性分析")
+    s.add_argument("--spo2", type=float, required=True, help="SpO2 %")
+    s.add_argument("--fio2", type=float, required=True, help="FiO2 小数（如 0.41）")
+    s.add_argument("--rr", type=float, required=True, help="呼吸频率 /min")
+    s.add_argument("--rr-max", type=float, help="RR 存疑时的上限，用于敏感性区间")
+    s.set_defaults(f=cmd_rox)
+
+    s = sub.add_parser("pf", help="氧合指数 P/F 与 Berlin 分层")
+    s.add_argument("--pao2", type=float, required=True)
+    s.add_argument("--fio2", type=float, required=True, help="FiO2 小数")
+    s.set_defaults(f=cmd_pf)
+
+    s = sub.add_parser("gik", help="GIK 实际胰岛素速率（U/h 与 U/kg/h）")
+    s.add_argument("--insulin", type=float, required=True, help="胰岛素总量 U")
+    s.add_argument("--volume", type=float, required=True, help="液体量 mL")
+    s.add_argument("--rate", type=float, required=True, help="泵速 mL/h")
+    s.add_argument("--weight", type=float, help="体重 kg（提供则算 U/kg/h）")
+    s.set_defaults(f=cmd_gik)
+
+    s = sub.add_parser("uf", help="CRRT 净超滤强度 mL/kg/h 与 24h 净平衡")
+    s.add_argument("--net-uf", type=float, required=True, help="净超滤 mL/h")
+    s.add_argument("--weight", type=float, required=True, help="体重 kg")
+    s.set_defaults(f=cmd_uf)
+
+    s = sub.add_parser("ca-correct", help="白蛋白校正总钙")
+    s.add_argument("--ca", type=float, required=True, help="总钙 mg/dL")
+    s.add_argument("--albumin", type=float, required=True, help="白蛋白 g/L")
+    s.set_defaults(f=cmd_ca_correct)
+
+    s = sub.add_parser("alk-comp", help="代碱代偿预期 PaCO2，判断双重碱血症")
+    s.add_argument("--hco3", type=float, required=True)
+    s.add_argument("--paco2", type=float, required=True)
+    s.set_defaults(f=cmd_alk_comp)
 
     args = p.parse_args()
     args.f(args)

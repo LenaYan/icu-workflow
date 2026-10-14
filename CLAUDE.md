@@ -98,6 +98,7 @@ icu-workflow/
 │   ├── notes/                 # 单篇文献笔记
 │   └── topics/                # 按主题汇总（如 ARDS-vent、sepsis-resuscitation）
 ├── guidelines/                # 指南摘要与对照
+├── evals/                     # 分析质量回归测试（fixtures + 金标准 + rubric，见 evals/README.md）
 ├── research/                  # 科研项目
 │   ├── <project-name>/
 │   │   ├── data/              # 原始/清洗后数据（去标识化）
@@ -132,6 +133,7 @@ icu-workflow/
 - 涉及英文写作：按目标期刊 word limit、structured abstract 要求组织；句式偏学术、避免冗词
 - **PHI 安全**：任何处理临床数据 / 病例的会话，先确认是否已去标识化；建议引用 `cases/README.md` 与 `research/_template/checklists/data-deidentification-checklist.md`
 - **数据文件**：`.gitignore` 默认拦截 `*.csv/xlsx/dta/sav/rds` 等数据文件；只允许 `data-dictionary.md` 和 `*-example.csv` 等示意数据进 git；不要绕过
+- **病例分析 lint**：深度分析写完跑 `python3 scripts/check_case_doc.py <文件或目录>` 自查必备章节、引用闭环、参考文献核对状态；可计算指标一律先跑 `scripts/clinical_calc.py`（含 ROX/GIK 泵速/净超滤强度等），数据存疑时做敏感性分析，不口算、不跳过
 - 输出末尾如有自然的后续动作（保存笔记、扩展某点、case-based 展开），可主动提议但不强推
 
 ---
@@ -177,3 +179,4 @@ icu-workflow/
 - `rounds-handover` — 查房交班：by-system/SOAP → 三段式交班 → 归档
 - `kb-ingest` — 指南/文献入 ima 库：分类 → folder_id → 查重 → 上传 → 回填 ID 表
 - `session-archive` — 会话纪要归档 `sessions/YYYY-MM-DD-<topic>.md`
+- `analysis-compare` — 多版本分析对比：同一问题多份产出的共识/分歧对比（分歧逐值归属、禁止抹平为共识、结论回原文验证）
