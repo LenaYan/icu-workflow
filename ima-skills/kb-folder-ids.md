@@ -59,3 +59,22 @@ python3 scripts/ima_kb_admin.py rm <kb_id> <media_id...>  # 删除（不可逆�
 ```
 
 底层接口：`knowledge_tab_reader/get_knowledge_list`（列目录）、`knowledge_tab_sse/move_knowledge`（移动，SSE）、`knowledge_tab_writer/create_folder` / `del_knowledge`。
+
+## 附：ICU病例档案库（病例归档专用，与上面"医学知识库"是两个库）
+
+> 目标库：**ICU病例档案**（自有私有库，脱敏病例分析归档处；红线见 `kb-ingest` skill §8——仅限脱敏后病例、且只入本库）
+> - openapi_knowledge_base_id（upload_file 等写入工具用）：`CrPZPct-kywth1T9YIT7C1dC-JI_O06fRiVcrQ7OyHs=`
+> - cookie_knowledge_base_id（ask_knowledge_base 用）：`7515792857921919`
+
+| folder_id | 名称 |
+|---|---|
+| `folder_7516099784486279` | HTG-AP |
+| `folder_7516099776095883` | sepsis |
+| `folder_7516099776097272` | ARDS |
+| `folder_7516099776096326` | neuro-critical |
+| `folder_7516099780309448` | cardiogenic-shock |
+| `folder_7516099780290279` | trauma-postop |
+| `folder_7516099784503793` | kidney-AKI-CRRT |
+| `folder_7516099784484253` | obstetric-critical |
+| `folder_7516099788679612` | coagulation-DIC |
+| `folder_7516099788679163` | metabolic-endocrine |
