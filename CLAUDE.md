@@ -141,7 +141,9 @@ icu-workflow/
 本项目已通过 MCP 接入腾讯 ima 云端知识库（指南共识库 / 药物库 / 文献库等），工具前缀 `mcp__ima__`。
 
 - **配置位置（双份，需同步维护）**：Kimi Code CLI 读用户级 `~/.kimi-code/mcp.json`；Kimi 桌面客户端读自己的内核 home `~/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/kimi-code/home/mcp.json`——两者是独立文件、不互相同步。重抓 `IMA_COOKIE` 后必须**同时更新这两处**，否则报错 `600001` 的一侧就是没更新的那份。server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。MCP 只在新会话注册，配置变更后需重开会话
-- **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库，先 `list_knowledge_bases_full` 选库）；`upload_file` / `import_urls`（新指南、文献入库——**必须传 `folder_id` 归档到对应子目录**，归档流程与文件夹 ID 对照见 `ima-skills/kb-folder-ids.md`；按本地路径/内容分类，**无匹配类别时先问用户是否新建子目录**，同意后 `scripts/ima_kb_admin.py mkdir` 创建并回填 ID 表，不要落在根目录）；MCP 无 move/delete/mkdir 接口，整理已有条目用 `scripts/ima_kb_admin.py`（kbs/folders/ls/mv/mkdir/rm）
+- **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库）；`upload_file` / `import_urls`（新指南、文献入库——**必须传 `folder_id` 归档到对应子目录**，归档流程与文件夹 ID 对照见 `ima-skills/kb-folder-ids.md`；按本地路径/内容分类，**无匹配类别时先问用户是否新建子目录**，同意后 `scripts/ima_kb_admin.py mkdir` 创建并回填 ID 表，不要落在根目录）；MCP 无 move/delete/mkdir 接口，整理已有条目用 `scripts/ima_kb_admin.py`（kbs/folders/ls/mv/mkdir/rm）
+- **检索路由（准则类问题强制）**：指南推荐、剂量、阈值、适应证等准则类问题**默认先查 ima，不先 WebSearch**；各库的 cookie_knowledge_base_id、分层（自有库为一级源，订阅共享库为二级源）与典型问题的检索顺序见 **`ima-skills/kb-registry.md`**，按该表选库，不必每次重新 `list_knowledge_bases_full`。ima 无覆盖或 MCP 失效时才降级 WebSearch / 本地 `guidelines/`，并在输出中声明降级
+- **引用纪律（强制）**：`ask_knowledge_base` 的 RAG 回答只是检索入口；剂量、推荐等级、阈值等关键数字必须用 references 中的 `media_id` 调 `get_media_info` **回原文核对**后再引用，拿不到原文的标注「未核对原文」；检索不到的内容写「知识库未覆盖，建议查原文」，**禁止凭记忆补剂量或推荐等级**；订阅库与自有库/本地笔记冲突时并列呈现并提示用户，不自动采信
 - **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）。重抓后运行 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 可一次性同步更新两份配置（自动备份、回读校验、日志只显示脱敏凭证）
 - **使用边界**：真实病例资料（即使脱敏）不发送给 ima 工具；科室 SOP 库不通过 MCP 暴露；剂量、适应证等关键结论回指南原文核对；ima 检索结果与本地 `guidelines/` 笔记冲突时提示用户
 
@@ -171,7 +173,7 @@ icu-workflow/
 
 **编排 workflow skill**（4 个，跨步骤流程）：
 
-- `case-deep-analysis` — 深度病例分析：脱敏确认 → `icu-consultant` 会诊交叉验证 → `case-analysis.md` 模板输出 → 引用核查 → PHI 自检 → 归档 `cases/YYYY-MM/`
+- `case-deep-analysis` — 深度病例分析：脱敏确认 → ima 证据检索（`kb-registry.md`）→ `icu-consultant` 会诊交叉验证 → `case-analysis.md` 模板输出 → 引用-原文回核 → PHI 自检 → 归档 `cases/YYYY-MM/`
 - `rounds-handover` — 查房交班：by-system/SOAP → 三段式交班 → 归档
 - `kb-ingest` — 指南/文献入 ima 库：分类 → folder_id → 查重 → 上传 → 回填 ID 表
 - `session-archive` — 会话纪要归档 `sessions/YYYY-MM-DD-<topic>.md`
