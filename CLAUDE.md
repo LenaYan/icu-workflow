@@ -155,6 +155,8 @@ icu-workflow/
 
 `.kimi-code/skills/` 下的项目级 Skill 会被 Kimi Code CLI 和 Kimi 桌面客户端（打开本目录工作区时）**自动发现**——两侧读同一份文件，无需双份维护（与 §7 MCP 的双文件维护不同）。可 `/skill:<name>` 手动调用，或由模型按 description/whenToUse 自动触发；skill 在会话启动时扫描，新增或修改后需新开会话生效。Claude Code 不扫描该目录；在 Claude Code 会话中需要时直接引用对应文件路径即可。
 
+**桌面客户端对齐注意**：客户端与 CLI 读同一份项目文件，产出分叉只可能来自三处——① 旧会话未重开（skill 是启动时扫描的）；② ima MCP 是独立 `mcp.json`（§7），cookie 过期会静默降级 WebSearch；③ sub-agent 派单：客户端装有 Agent 工具且注册了 `icu-consultant`，但运行指令默认"按需派发、不主动使用"（2026-10 探针 + 两次复跑证实）——`case-deep-analysis` 第 3/6 步在客户端要么由用户在请求中显式要求派单（"步骤 3 必须实际派出 icu-consultant"），要么由模型按 SKILL.md 降级条款先向用户要授权，**不得静默降级**。对齐与否不靠推断，用 `evals/` fixture 实测（流程见 `evals/README.md` §5）。
+
 **临床工作流 skill**（13 个，薄封装：frontmatter + 本地化适配前言，流程正文单源在 `ima-skills/NN-*.md`，正文中的「知识库」经 ima MCP 访问）：
 
 | Skill | 用途 |
