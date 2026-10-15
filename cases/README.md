@@ -29,13 +29,16 @@
 - 病案号末 4 位：`MR ****1234`
 - 日期：`2026-05`（住院月份）/`D1, D3, D7`（入科后第几天）
 - 入院诊断与治疗经过完整保留
+- 文件名：`P1-<病种>-D4-<主题>.md`，**禁止出现精确日期**（`YYYY-MM-DD` + `D4` 可倒推入院日）；版本区分用 `-v2` / `-复跑2` 等后缀
 
 ### 示例
 ✅ `P1, M, 60-65y, ICU-08, MR ****5821, D3：sepsis + ARDS P/F 120, NE 0.4 μg/kg/min, VV-ECMO d2…`
 ❌ `张某某, 男, 62岁, 身份证 3201...0815, 2026-05-12 入 ICU…`
 
 ### 一键检查
-准备提交前，让 Claude 跑一遍 PHI 扫描：
+已启用 pre-commit 钩子（`scripts/hooks/pre-commit`，安装：`git config core.hooksPath scripts/hooks`），提交时自动对 `cases/ sessions/ evals/ research/` 跑 `scripts/phi_scan.py` 与病例 lint；命中即阻断。手动全量扫描：`python3 scripts/phi_scan.py --all`。
+
+也可让模型跑一遍 PHI 扫描：
 > "扫描 cases/ 目录里有没有 PHI 残留"
 
 ---

@@ -71,6 +71,16 @@ date: 2026-10
 
 ---
 
+## Red Flags（立即升级）
+
+> 汇总自上文已有判断，未新增临床建议。
+
+- ROX 持续 <3.85、RR >30 伴辅助呼吸肌动用、PaCO₂ 反升（疲劳信号）或意识变化 → 插管 [3]
+- Hb 继续下降 / 便潜血阳性 / 腹围增大 → 增强 CT 排查胰周/腹膜后出血
+- TG 反弹 >11.3 mmol/L → 重启 PE/血液净化 [1]
+
+---
+
 ## 需解决的问题
 
 TG 经 2 次血浆置换已由 84 降至 10.67 mmol/L（低于 HTG-AP 诊断阈值 11.3 mmol/L [1]），病因治疗阶段性达标。当前焦点：①后续降脂策略如何衔接（PE 是否停、胰岛素如何维持、防反弹）；②中度 ARDS 在 HFNC 下的监测与升级路径；③CRRT 的去留与容量管理（0 超滤与液体过负荷的矛盾）；④进行性代谢性碱中毒的病因与纠正；⑤抗凝叠加与 Hb 下降的风险处置。
@@ -152,15 +162,15 @@ TG 经 2 次血浆置换已由 84 降至 10.67 mmol/L（低于 HTG-AP 诊断阈�
 > 证据来源说明：准则类内容经 ima 知识库检索（自有「医学知识库」+ 订阅「医学知识库(中国指南共识)」）。条目 [1] 来自订阅库，MCP 无原文读取权限（报 220030），内容经 RAG 提取，**未核对原文**；条目 [2][8] 关键数字经 ima RAG 提取、原文 PDF 在位但未逐页核对，标注同上。ima 自有库对 HTG-AP 专题两次超时，[1] 实际取自订阅库，建议床旁落地前回纸质/全文版共识核对剂量。引用已经独立 sub-agent 回核：A/B/D/E/F/H 支持，C/G 部分支持并已修正。
 
 1. 中国医师协会急诊医师分会, 等. 《高甘油三酯血症性急性胰腺炎诊治急诊专家共识》. 中华急诊医学杂志. 2021;30(8):937-947. [共识]（订阅库 RAG 核对，未读全文原文）
-2. 中华医学会肾脏病学分会, 等. 《中国急性肾损伤临床实践指南》. 2023. [指南]（经 ima RAG 提取）
-3. Roca O, et al. *An index combining respiratory rate and oxygenation to predict outcome of nasal high-flow therapy*. AJRCCM. 2019;199(11):1368-1376. [队列]
+2. 中华医学会肾脏病学分会, 等. 《中国急性肾损伤临床实践指南》. 2023. [指南]（经 ima RAG 提取）（经 ima RAG 提取，原文 PDF 在位但未逐页核对 → 未核对原文）
+3. Roca O, et al. *An index combining respiratory rate and oxygenation to predict outcome of nasal high-flow therapy*. AJRCCM. 2019;199(11):1368-1376. [队列]（核对状态未记录，按未核对原文处理）
 4. Weatherald J, et al. *Awake prone positioning for COVID-19 acute hypoxaemic respiratory failure: a systematic review and meta-analysis*. BMJ. 2022;379:e071966. [Meta]（已回核原文）
-5. Grasselli G, et al. *ESICM guidelines on acute respiratory distress syndrome: definition, phenotyping and respiratory support strategies*. ICM. 2023;49(7):727-759. [指南]
-6. Wiedemann HP, et al. *Comparison of two fluid-management strategies in acute lung injury (FACTT)*. NEJM. 2006;354(24):2564-2575. [RCT]
-7. Zeng, et al. 《萘莫司他与低分子肝素在 CRRT 抗凝中滤器寿命与安全性的单中心回顾性比较》. BMC Nephrol. 2026;27:546. [队列]（doi:10.1186/s12882-026-05351-9，一作拼写待核）
-8. 乙酰唑胺药物综述（经 ima 提取，ICU 碱中毒具体剂量方案知识库未覆盖）. [综述]
+5. Grasselli G, et al. *ESICM guidelines on acute respiratory distress syndrome: definition, phenotyping and respiratory support strategies*. ICM. 2023;49(7):727-759. [指南]（核对状态未记录，按未核对原文处理）
+6. Wiedemann HP, et al. *Comparison of two fluid-management strategies in acute lung injury (FACTT)*. NEJM. 2006;354(24):2564-2575. [RCT]（核对状态未记录，按未核对原文处理）
+7. Zeng, et al. 《萘莫司他与低分子肝素在 CRRT 抗凝中滤器寿命与安全性的单中心回顾性比较》. BMC Nephrol. 2026;27:546. [队列]（doi:10.1186/s12882-026-05351-9，一作拼写待核）（核对状态未记录，按未核对原文处理）
+8. 乙酰唑胺药物综述（经 ima 提取，ICU 碱中毒具体剂量方案知识库未覆盖）. [综述]（经 ima RAG 提取，原文 PDF 在位但未逐页核对 → 未核对原文）
 9. Singer P, et al. *ESPEN guideline on clinical nutrition in the intensive care unit*. Clin Nutr. 2019;38(1):48-79. [指南]（知识库收录 2019 版已回核；2023 更新版 Clin Nutr 2023;42:1671-1689 相关推荐一致）
-10. Bakker OJ, et al. *Early versus on-demand nasoenteric tube feeding in acute pancreatitis (PYTHON)*. NEJM. 2014;371(21):1983-1993. [RCT]
+10. Bakker OJ, et al. *Early versus on-demand nasoenteric tube feeding in acute pancreatitis (PYTHON)*. NEJM. 2014;371(21):1983-1993. [RCT]（核对状态未记录，按未核对原文处理）
 
 ---
 

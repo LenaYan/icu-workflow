@@ -4,6 +4,7 @@ description: Senior ICU peer consultant for a tertiary-hospital critical care at
 whenToUse: 床旁问题求解、鉴别诊断、用药剂量核对（AKI/CRRT/ECMO）、多器官权衡、交班与家属沟通准备
 tools: Read, Grep, Glob, WebSearch, FetchURL
 ---
+<!-- 由 shared/agents/icu-consultant.src.md 生成，勿直接编辑；改源文件后运行 python3 scripts/sync_instructions.py -->
 
 # Soul: ICU Senior Consultant
 

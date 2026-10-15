@@ -9,7 +9,10 @@
   W1 剂量/阈值无引用：剂量单位后 100 字符内无 [N]（warning，速览/治疗清单类章节除外）
 
 用法：
-  python3 scripts/check_case_doc.py <file.md | dir>
+  python3 scripts/check_case_doc.py <file.md | dir> [...]
+目录模式跳过 `_templates/`、`_` 开头的目录/文件与 README.md（模板与说明文档不是病例分析）。
+  --auto：只检查深度分析文档（frontmatter `template: case-analysis`，或含「需解决的问题/病例分析」标题），
+          普通交班 / SOAP / rounds 笔记跳过——pre-commit 使用此模式。
 退出码：有 error 为 1，仅 warning 为 0。
 """
 
@@ -32,7 +35,8 @@ FLOW_BLOCK = re.compile(r"独立会诊|交叉验证|流程偏差说明")
 REF_HEADING = re.compile(r"^#{1,3}.*参考文献\s*$", re.M)
 REF_ENTRY = re.compile(r"^\s*(\d+)\.\s+\S", re.M)
 INLINE_CITE = re.compile(r"\[(\d{1,2})\]")
-REF_TAG = re.compile(r"\[(指南|共识|RCT|Meta|综述|队列|说明书|基础|预印本)\]")
+_TAGS = r"(?:指南|共识|RCT|Meta|综述|队列|说明书|基础|预印本)"
+REF_TAG = re.compile(rf"\[{_TAGS}(?:/{_TAGS})*\]")  # 允许组合标签，如 [综述/Meta]
 CHECK_STATUS = re.compile(r"已回核|未核对原文|未读全文|部分支持")
 
 DOSE = re.compile(
@@ -115,11 +119,39 @@ def check_file(path: Path):
     return errors, warnings
 
 
+def is_case_doc(path: Path, root: Path) -> bool:
+    rel = path.relative_to(root)
+    if path.name.lower() == "readme.md":
+        return False
+    return not any(part.startswith("_") for part in rel.parts)
+
+
+ANALYSIS_MARKER = re.compile(r"^template:\s*case-analysis\b|^#{1,3}.*(需解决的问题|病例分析)", re.M)
+
+
+def is_deep_analysis(path: Path) -> bool:
+    return bool(ANALYSIS_MARKER.search(path.read_text(encoding="utf-8")))
+
+
+def collect(targets):
+    files = []
+    for t in map(Path, targets):
+        if t.is_dir():
+            files += [f for f in sorted(t.glob("**/*.md")) if is_case_doc(f, t)]
+        else:
+            files.append(t)
+    return files
+
+
 def main():
-    if len(sys.argv) != 2:
+    args = sys.argv[1:]
+    auto = "--auto" in args
+    args = [a for a in args if a != "--auto"]
+    if not args:
         sys.exit(__doc__)
-    target = Path(sys.argv[1])
-    files = sorted(target.glob("**/*.md")) if target.is_dir() else [target]
+    files = collect(args)
+    if auto:
+        files = [f for f in files if is_deep_analysis(f)]
     total_err = 0
     for f in files:
         errors, warnings = check_file(f)

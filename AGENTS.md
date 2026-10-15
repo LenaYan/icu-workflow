@@ -1,8 +1,9 @@
+<!-- 由 shared/INSTRUCTIONS.src.md 生成，勿直接编辑；改源文件后运行 python3 scripts/sync_instructions.py -->
 # ICU Workflow — Kimi Code 协作说明
 
 本目录用于国内顶尖三甲医院 ICU 临床医生的日常工作流：病例梳理、文献阅读、指南查询、科研与论文写作。该文件是给 Kimi Code 的项目级指令（`AGENTS.md`），定义在本目录下默认的协作风格、内容边界与组织结构。
 
-> **双栈说明**：本项目同时支持 Claude Code（`CLAUDE.md` + `.claude/`）与 Kimi Code（`AGENTS.md` + `.kimi-code/`）。本文件与 `CLAUDE.md` 内容保持一致，修改任一文件时请同步另一份。
+> **双栈说明**：本项目同时支持 Claude Code（`CLAUDE.md` + `.claude/`）与 Kimi Code（`AGENTS.md` + `.kimi-code/`）。`CLAUDE.md` / `AGENTS.md` 与两份 `icu-consultant.md` 均由 `shared/` 下的源文件生成——**不要直接改生成文件**：改 `shared/INSTRUCTIONS.src.md` 或 `shared/agents/*.src.md`，再跑 `python3 scripts/sync_instructions.py`；pre-commit 会校验是否同步。
 
 ---
 
@@ -91,7 +92,10 @@ icu-workflow/
 │   ├── agents/                # 项目级 sub-agent（如 icu-consultant.md）
 │   └── skills/                # 项目级 Skill（ima-skills 薄封装 + 编排 workflow，见 §8）
 ├── .claude/                   # Claude Code 项目配置
-│   └── settings.local.json    # 项目级权限/配置（按需）
+│   ├── agents/                # 由 shared/agents/ 生成
+│   └── settings.local.json    # 项目级权限/配置（按需，不进 git）
+├── shared/                    # 双栈单源：INSTRUCTIONS.src.md + agents/*.src.md（见 scripts/sync_instructions.py）
+├── scripts/                   # lint / PHI 扫描 / 床旁计算 / ima 管理；hooks/ 为 pre-commit 钩子
 ├── cases/                     # 病例记录、查房、交班、疑难病例讨论
 │   └── YYYY-MM/
 ├── literature/                # 文献笔记
@@ -110,6 +114,7 @@ icu-workflow/
 ```
 
 会话归档保存在本项目根目录下的 `sessions/YYYY-MM-DD-<topic>.md`。Kimi Code 自带的会话历史由 CLI 自行管理（`kimi --session` / `/sessions` 恢复），这里归档的是经整理、可长期复用的会话纪要；只有不在本项目目录下工作时，才把纪要写到项目外。
+涉及具体病例（P1/P2…）的会话改用 `sessions/YYYY-MM-P<N>-<topic>.md`，正文只写到年-月——会话日期 + 入科 D 数可倒推入院日。
 
 ---
 
@@ -133,6 +138,7 @@ icu-workflow/
 - 涉及英文写作：按目标期刊 word limit、structured abstract 要求组织；句式偏学术、避免冗词
 - **PHI 安全**：任何处理临床数据 / 病例的会话，先确认是否已去标识化；建议引用 `cases/README.md` 与 `research/_template/checklists/data-deidentification-checklist.md`
 - **数据文件**：`.gitignore` 默认拦截 `*.csv/xlsx/dta/sav/rds` 等数据文件；只允许 `data-dictionary.md` 和 `*-example.csv` 等示意数据进 git；不要绕过
+- **PHI / lint 钩子**：首次 clone 后执行 `git config core.hooksPath scripts/hooks` 启用 pre-commit——提交时自动跑 `scripts/phi_scan.py --staged`（手机/身份证/完整病案号/姓名/精确日期，含文件名）、暂存病例的 `check_case_doc.py`、双栈同步校验与 `clinical_calc` 单测；命中即阻断，不要用 `--no-verify` 绕过
 - **病例分析 lint**：深度分析写完跑 `python3 scripts/check_case_doc.py <文件或目录>` 自查必备章节、引用闭环、参考文献核对状态；可计算指标一律先跑 `scripts/clinical_calc.py`（含 ROX/GIK 泵速/净超滤强度等），数据存疑时做敏感性分析，不口算、不跳过
 - 输出末尾如有自然的后续动作（保存笔记、扩展某点、case-based 展开），可主动提议但不强推
 
@@ -175,10 +181,10 @@ icu-workflow/
 | `medical-record-drafting` | 病历文书生成 |
 | `deidentify-evidence-search` | 去标识化 + 循证检索 |
 
-**编排 workflow skill**（4 个，跨步骤流程）：
+**编排 workflow skill**（5 个，跨步骤流程）：
 
 - `case-deep-analysis` — 深度病例分析：脱敏确认 → ima 证据检索（`kb-registry.md`）→ `icu-consultant` 会诊交叉验证 → `case-analysis.md` 模板输出 → 引用-原文回核 → PHI 自检 → 归档 `cases/YYYY-MM/`
 - `rounds-handover` — 查房交班：by-system/SOAP → 三段式交班 → 归档
 - `kb-ingest` — 指南/文献入 ima 库：分类 → folder_id → 查重 → 上传 → 回填 ID 表
-- `session-archive` — 会话纪要归档 `sessions/YYYY-MM-DD-<topic>.md`
+- `session-archive` — 会话纪要归档 `sessions/YYYY-MM-DD-<topic>.md`（病例会话用 `YYYY-MM-P<N>-<topic>.md`）
 - `analysis-compare` — 多版本分析对比：同一问题多份产出的共识/分歧对比（分歧逐值归属、禁止抹平为共识、结论回原文验证）

@@ -3,7 +3,9 @@ template: handover
 deidentified: true
 ---
 
-# 交班 — {YYYY-MM-DD HH:MM}（早 / 晚）
+# 交班 — {YYYY-MM}｜入科 D{N}（早 / 晚）
+
+> 不写精确日期；时间点用 D 数 + 早/晚班表示（PHI 规则见 `cases/README.md`）
 
 > 三段式：问题列表 → Active issues → 24h plan
 

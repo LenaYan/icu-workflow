@@ -71,6 +71,9 @@ def cmd_ag(a):
     if a.albumin is not None:
         ag_corr = ag + 2.5 * (40 - a.albumin) / 10
         print(f"白蛋白校正 AG = {ag_corr:.1f}（Alb {a.albumin} g/L，每低 10 g/L 补 2.5）")
+    if a.hco3 >= 24:
+        print(f"Delta ratio 不适用（HCO3 {a.hco3} ≥ 24，无 HCO3 下降可比）")
+        return
     delta = (ag_corr - 12) / (24 - a.hco3)
     interp = (
         "<0.4：合并正常 AG 代谢性酸中毒" if delta < 0.4 else

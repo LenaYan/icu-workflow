@@ -113,7 +113,7 @@ tags: [Trousseau, cancer-associated-DIC, CAT, VTE, IVC-filter, lung-cancer, ICH-
   - [ ] GLIM / CASCO 评估恶病质
   - [ ] **泮托拉唑 40 mg iv QD**（活动性出血，符合 SUP 适应证）
 
-## 7. 血液 / 凝血 — **本例核心**
+## 7. 血液 / 凝血 — **本例核心（病例分析）**
 
 ### 需解决的问题
 
@@ -248,7 +248,7 @@ tags: [Trousseau, cancer-associated-DIC, CAT, VTE, IVC-filter, lung-cancer, ICH-
 - [ ] IVC 滤网仅辅助；可回收滤网应在 3 个月内回收 — PREPIC2 显示滤网 + 抗凝相比单纯抗凝无获益，长期留置增加 DVT 复发 [21]
 
 ## 8. 内分泌
-- 血糖目标 7.8-10 mmol/L（NICE-SUGAR）
+- 血糖目标 7.8-10 mmol/L（NICE-SUGAR）[22]
 - 警惕：若需要激素（脑水肿、止吐）→ 应激性高糖
 - **24h plan**：q6h POC 血糖
 
@@ -302,7 +302,7 @@ tags: [Trousseau, cancer-associated-DIC, CAT, VTE, IVC-filter, lung-cancer, ICH-
 | 试验 / 指南 | 要点 |
 |---|---|
 | **CLOT (Lee NEJM 2003)** | LMWH (达肝素) > VKA 用于 CAT 长期抗凝 |
-| **CATCH (JAMA 2015)** | 替奈普素同样优于 VKA |
+| **CATCH (JAMA 2015)** | 替奈普素同样优于 VKA [18] |
 | **Hokusai-VTE Cancer (NEJM 2018)** | 依度沙班 non-inferior，但 GI 出血更高（GI/GU 肿瘤慎用） |
 | **SELECT-D (JCO 2018)** | 利伐沙班 VTE 复发↓但 CRNMB↑ |
 | **CARAVAGGIO (NEJM 2020)** | 阿哌沙班 non-inferior 且大出血未增加（不含脑癌/急性白血病） |
@@ -319,37 +319,51 @@ tags: [Trousseau, cancer-associated-DIC, CAT, VTE, IVC-filter, lung-cancer, ICH-
 
 > 格式与标签见 `cases/_templates/references-style.md`。编号按文中首次出现顺序；同源多引复用同号。
 
-1. Levi M, Scully M. *How I treat disseminated intravascular coagulation*. Blood. 2018;131(8):845-854. [综述]
-2. Wada H, et al. *Management of cancer-associated disseminated intravascular coagulation: guidance from the SSC of the ISTH*. J Thromb Haemost. 2015;13(4):671-675. [指南]
-3. Squizzato A, et al. *Disseminated Intravascular Coagulation: An Update on Pathogenesis, Diagnosis, and Therapeutic Strategies*. Clin Appl Thromb Hemost. 2018;24(9S):8S-28S. [综述]
-4. Taylor FB, et al. *Towards definition, clinical and laboratory criteria, and a scoring system for disseminated intravascular coagulation (ISTH SSC)*. Thromb Haemost. 2001;86(5):1327-1330. [指南]
-5. Greinacher A. *Heparin-induced thrombocytopenia*. NEJM. 2015;373(3):252-261. [综述]
-6. Mueck W, et al. *Clinical pharmacokinetics and pharmacodynamics of rivaroxaban*. Clin Pharmacokinet. 2014;53(1):1-16. [综述]
-7. 利伐沙班片说明书. 国家药监局, 2025. [说明书]
-8. 中国临床肿瘤学会 (CSCO). *肿瘤相关静脉血栓栓塞症预防与治疗指南* (2019). [指南]
-9. Estcourt LJ, et al. *Guidelines for the use of platelet transfusions (BSH)*. Br J Haematol. 2017;176(3):365-394. [指南]
-10. Kaufman RM, et al. *Platelet transfusion: a clinical practice guideline from the AABB*. Ann Intern Med. 2015;162(3):205-213. [指南]
-11. Hunt BJ, et al. *A practical guideline for the haematological management of major haemorrhage (BCSH)*. Br J Haematol. 2015;170(6):788-803. [指南]
-12. Hébert PC, et al. *A multicenter, randomized, controlled clinical trial of transfusion requirements in critical care (TRICC)*. NEJM. 1999;340(6):409-417. [RCT]
-13. Majeed A, et al. *Management of rivaroxaban- or apixaban-associated major bleeding with prothrombin complex concentrates: a cohort study*. Blood. 2017;130(15):1706-1712. [队列]
-14. 中国临床肿瘤学会 (CSCO). *肿瘤治疗所致血小板减少症诊疗指南* (2025). [指南]
-15. NCCN. *Cancer-Associated Venous Thromboembolic Disease, v3.2025*. [指南]
-16. Lee AYY, et al. *Low-molecular-weight heparin versus a coumarin for the prevention of recurrent venous thromboembolism in patients with cancer (CLOT)*. NEJM. 2003;349(2):146-153. [RCT]
-17. Agnelli G, et al. *Apixaban for the Treatment of Venous Thromboembolism Associated with Cancer (CARAVAGGIO)*. NEJM. 2020;382(17):1599-1607. [RCT]
-18. Lee AYY, et al. *Tinzaparin vs warfarin for treatment of acute VTE in patients with active cancer (CATCH)*. JAMA. 2015;314(7):677-686. [RCT]
-19. Raskob GE, et al. *Edoxaban for the treatment of cancer-associated VTE (Hokusai-VTE Cancer)*. NEJM. 2018;378(7):615-624. [RCT]
-20. Young AM, et al. *Comparison of an oral factor Xa inhibitor with low molecular weight heparin in patients with cancer with VTE (SELECT-D)*. J Clin Oncol. 2018;36(20):2017-2023. [RCT]
-21. Mismetti P, et al. *Effect of a retrievable inferior vena cava filter plus anticoagulation vs anticoagulation alone on risk of recurrent pulmonary embolism (PREPIC2)*. JAMA. 2015;313(16):1627-1635. [RCT]
-22. NICE-SUGAR Study Investigators. *Intensive versus conventional glucose control in critically ill patients*. NEJM. 2009;360(13):1283-1297. [RCT]
+1. Levi M, Scully M. *How I treat disseminated intravascular coagulation*. Blood. 2018;131(8):845-854. [综述]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+2. Wada H, et al. *Management of cancer-associated disseminated intravascular coagulation: guidance from the SSC of the ISTH*. J Thromb Haemost. 2015;13(4):671-675. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+3. Squizzato A, et al. *Disseminated Intravascular Coagulation: An Update on Pathogenesis, Diagnosis, and Therapeutic Strategies*. Clin Appl Thromb Hemost. 2018;24(9S):8S-28S. [综述]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+4. Taylor FB, et al. *Towards definition, clinical and laboratory criteria, and a scoring system for disseminated intravascular coagulation (ISTH SSC)*. Thromb Haemost. 2001;86(5):1327-1330. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+5. Greinacher A. *Heparin-induced thrombocytopenia*. NEJM. 2015;373(3):252-261. [综述]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+6. Mueck W, et al. *Clinical pharmacokinetics and pharmacodynamics of rivaroxaban*. Clin Pharmacokinet. 2014;53(1):1-16. [综述]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+7. 利伐沙班片说明书. 国家药监局, 2025. [说明书]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+8. 中国临床肿瘤学会 (CSCO). *肿瘤相关静脉血栓栓塞症预防与治疗指南* (2019). [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+9. Estcourt LJ, et al. *Guidelines for the use of platelet transfusions (BSH)*. Br J Haematol. 2017;176(3):365-394. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+10. Kaufman RM, et al. *Platelet transfusion: a clinical practice guideline from the AABB*. Ann Intern Med. 2015;162(3):205-213. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+11. Hunt BJ, et al. *A practical guideline for the haematological management of major haemorrhage (BCSH)*. Br J Haematol. 2015;170(6):788-803. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+12. Hébert PC, et al. *A multicenter, randomized, controlled clinical trial of transfusion requirements in critical care (TRICC)*. NEJM. 1999;340(6):409-417. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+13. Majeed A, et al. *Management of rivaroxaban- or apixaban-associated major bleeding with prothrombin complex concentrates: a cohort study*. Blood. 2017;130(15):1706-1712. [队列]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+14. 中国临床肿瘤学会 (CSCO). *肿瘤治疗所致血小板减少症诊疗指南* (2025). [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+15. NCCN. *Cancer-Associated Venous Thromboembolic Disease, v3.2025*. [指南]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+16. Lee AYY, et al. *Low-molecular-weight heparin versus a coumarin for the prevention of recurrent venous thromboembolism in patients with cancer (CLOT)*. NEJM. 2003;349(2):146-153. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+17. Agnelli G, et al. *Apixaban for the Treatment of Venous Thromboembolism Associated with Cancer (CARAVAGGIO)*. NEJM. 2020;382(17):1599-1607. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+18. Lee AYY, et al. *Tinzaparin vs warfarin for treatment of acute VTE in patients with active cancer (CATCH)*. JAMA. 2015;314(7):677-686. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+19. Raskob GE, et al. *Edoxaban for the treatment of cancer-associated VTE (Hokusai-VTE Cancer)*. NEJM. 2018;378(7):615-624. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+20. Young AM, et al. *Comparison of an oral factor Xa inhibitor with low molecular weight heparin in patients with cancer with VTE (SELECT-D)*. J Clin Oncol. 2018;36(20):2017-2023. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+21. Mismetti P, et al. *Effect of a retrievable inferior vena cava filter plus anticoagulation vs anticoagulation alone on risk of recurrent pulmonary embolism (PREPIC2)*. JAMA. 2015;313(16):1627-1635. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+22. NICE-SUGAR Study Investigators. *Intensive versus conventional glucose control in critically ill patients*. NEJM. 2009;360(13):1283-1297. [RCT]（未核对原文：本文早于引用纪律，未经 ima/原文回核）
 
 ---
 
 ## 待补信息清单（请用户在下次更新时补齐）
 
-1. **肺癌**：病理类型、分子分型（EGFR/ALK/ROS1/KRAS/PD-L1）、TNM、当前靶向药名称剂量、最近 PET-CT / 胸部 CT
-2. **头颅影像**：MRI 原始报告全文、强化灶单发 vs 多发、有无水肿 / 出血信号（SWI/T2*）
-3. **抗凝史**：利伐沙班具体剂量、停药精确时间；之前是否用过 UFH / LMWH（关键 — HIT 排查）
-4. **IVC 滤网**：类型（永久 vs 可回收）、置入时影像、滤网上下血栓情况
-5. **当前查体**：GCS、瞳孔、肌力、有无脑膜刺激征、出血部位与量级
-6. **体重 / 身高 / BSA** + Cr / eGFR — 精算剂量
-7. **化疗史 / 激素史** — PJP 风险评估
+1. **肺癌**：病理类型、分子分型（EGFR/ALK/ROS1/KRAS/PD-L1）、TNM、当前靶向药名称剂量、最近 PET-CT / 胸部 CT（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+2. **头颅影像**：MRI 原始报告全文、强化灶单发 vs 多发、有无水肿 / 出血信号（SWI/T2*）（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+3. **抗凝史**：利伐沙班具体剂量、停药精确时间；之前是否用过 UFH / LMWH（关键 — HIT 排查）（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+4. **IVC 滤网**：类型（永久 vs 可回收）、置入时影像、滤网上下血栓情况（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+5. **当前查体**：GCS、瞳孔、肌力、有无脑膜刺激征、出血部位与量级（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+6. **体重 / 身高 / BSA** + Cr / eGFR — 精算剂量（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+7. **化疗史 / 激素史** — PJP 风险评估（未核对原文：本文早于引用纪律，未经 ima/原文回核）
+
+---
+
+## 流程偏差说明
+
+- 本文写于 `case-deep-analysis` 编排流程与引用纪律（ima 优先 + 原文回核）落地之前：未做 icu-consultant 独立会诊交叉验证，参考文献均未经 ima/原文回核，统一标注「未核对原文」。
+- 如本例再次复用，建议按 `.kimi-code/skills/case-deep-analysis/SKILL.md` 重跑关键剂量与推荐等级的回核。
+
+## PHI 自检
+
+- [x] 无真实姓名 / 身份证 / 手机 / 完整病案号（仅 P1）
+- [x] 无精确日期（仅 2026-05 与 D 数）
+- [x] 原始图片含 PHI，未入 git（见文首提示）
+- [x] 已过 `scripts/phi_scan.py`
