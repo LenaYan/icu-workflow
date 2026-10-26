@@ -1,6 +1,6 @@
 # ICU Guideline & Drug Label PDF Library — Index
 
-Last updated: 2026-10-14. PDFs are local only (git-ignored); this index is tracked.
+Last updated: 2026-10-15. PDFs are local only (git-ignored); this index is tracked.
 
 Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" and
 "Drug Labels") and for local lookup by the `icu-consultant` agent.
@@ -16,7 +16,7 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 | `drug-labels/_FDA-reference-only/`                       | **No**         | US labels; doses, units and indications differ from NMPA (see caveats)                     |
 | `_superseded/`                                           | **No**         | Replaced by newer versions; would pollute RAG retrieval                                    |
 
-## Inventory (80 PDFs + 1 HTML full-text archive + 13 NMPA label MD transcriptions current + 3 superseded)
+## Inventory (106 PDFs + 1 HTML full-text archive + 13 NMPA label MD transcriptions current + 3 superseded)
 
 ### Sepsis
 | File | Pages | DOI |
@@ -93,6 +93,54 @@ Purpose: source library for the ima knowledge bases ("Guidelines & Consensus" an
 |---|---|---|
 | general-ICU/2017-SCCM-family-centered-care-ICU-guideline.pdf | 114 | 10.1097/CCM.0000000000002169 (accepted manuscript) |
 | general-ICU/2024-ESICM-end-of-life-palliative-care-ICU-guideline.pdf | 27 | 10.1007/s00134-024-07579-1 |
+
+### ECG (`ecg/`, added 2026-10-15 — reference set for the ECG-analysis assistant tool)
+
+Chinese standards & consensus:
+| File | Pages | DOI / Source |
+|---|---|---|
+| ecg/2019-ecg-measurement-technique-guide-CN.pdf | 10 | J Pract Electrocardiol 2019;28(2) (ecgmac.com) |
+| ecg/2019-ecg-diagnostic-terminology-consensus-CN.pdf | 5 | 10.13308/j.issn.2095-9354.2019.03.002 |
+| ecg/2019-routine-ecg-operation-guide-CN.pdf | 6 | 10.13308/j.issn.2095-9354.2019.01.001 |
+| ecg/2026-ecg-report-writing-consensus-CN.pdf | 7 | 10.6040/j.issn.1671-7554.0.2025.1583 |
+| ecg/2022-CSPE-ventricular-arrhythmias-primary-care-CN.pdf | 22 | 10.13308/j.issn.2095-9354.2022.02.001 |
+| ecg/2021-CSPE-bradycardia-conduction-abnormalities-CN.pdf | 27 | 10.3760/cma.j.cn113859-20210217-00037 (**scanned, no text layer — ima RAG extraction will be poor**) |
+| ecg/2023-CSEM-bedside-temporary-cardiac-pacing-CN.pdf | 6 | 10.3760/cma.j.cn121430-20230228-00124 |
+
+International standardization & interpretation:
+| File | Pages | DOI |
+|---|---|---|
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part1.pdf | 20 | 10.1161/CIRCULATIONAHA.106.180201 (note: Parts 1–2 are the 2007 Circulation version; Wayback snapshot of AHA OA original) |
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part2.pdf | 9 | 10.1161/CIRCULATIONAHA.106.180202 (2007; same note) |
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part3.pdf | 7 | 10.1161/CIRCULATIONAHA.108.191095 |
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part4.pdf | 11 | 10.1161/CIRCULATIONAHA.108.191096 |
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part5.pdf | 12 | 10.1161/CIRCULATIONAHA.108.191097 |
+| ecg/2009-AHA-ACCF-HRS-ecg-standardization-part6.pdf | 10 | 10.1161/CIRCULATIONAHA.108.191098 |
+| ecg/2016-SBC-ecg-reporting-guideline-exec-summary.pdf | 11 | 10.5935/abc.20160173 (PMC5137383) |
+| ecg/2016-SBC-ecg-reporting-guideline-full.pdf | 38 | 10.5935/abc.20160040 (SciELO, Portuguese full text) |
+
+Arrhythmia guidelines:
+| File | Pages | DOI |
+|---|---|---|
+| ecg/2024-ESC-atrial-fibrillation.pdf | 101 | 10.1093/eurheartj/ehae176 |
+| ecg/2023-ACC-AHA-atrial-fibrillation.pdf | 156 | 10.1161/CIR.0000000000001193 |
+| ecg/2015-ACC-AHA-HRS-supraventricular-tachycardia.pdf | 69 | 10.1161/CIR.0000000000000311 |
+| ecg/2017-AHA-ACC-HRS-ventricular-arrhythmias.pdf | 120 | 10.1161/CIR.0000000000000549 |
+| ecg/2022-ESC-ventricular-arrhythmias.pdf | 130 | 10.1093/eurheartj/ehac262 |
+
+Ischemia / pacing / special populations:
+| File | Pages | DOI |
+|---|---|---|
+| ecg/2018-ESC-ACC-AHA-WHF-universal-definition-mi.pdf | 35 | 10.1093/eurheartj/ehy462 |
+| ecg/2017-ESC-stemi.pdf | 66 | 10.1093/eurheartj/ehx393 |
+| ecg/2021-ESC-cardiac-pacing-crt.pdf | 95 | 10.1093/eurheartj/ehab364 |
+| ecg/2019-ESC-acute-pulmonary-embolism.pdf | 61 | 10.1093/eurheartj/ehz405 |
+| ecg/2017-BJSM-athlete-ecg-interpretation.pdf | 29 | 10.1136/bjsports-2016-097331 (UNC repository) |
+
+Pulled back from own ima KB (`ecg/papers-own-kb/`):
+| File | Pages | Note |
+|---|---|---|
+| ecg/papers-own-kb/27982266-sbc-ecg-reports.pdf | 11 | Duplicate of `2016-SBC-ecg-reporting-guideline-exec-summary.pdf`; kept as verification of the ima pull pipeline (ask → get_media_info → curl). 4 more pulls pending — ima model outage 2026-10-15 (see BACKLOG) |
 
 ### Chinese guidelines & consensus (`china-consensus/`)
 | File | Pages | Society | DOI |

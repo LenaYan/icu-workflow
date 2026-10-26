@@ -148,20 +148,20 @@ icu-workflow/
 
 本项目已通过 MCP 接入腾讯 ima 云端知识库（指南共识库 / 药物库 / 文献库等），工具前缀 `mcp__ima__`。
 
-- **配置位置（双份，需同步维护）**：Kimi Code CLI 读用户级 `~/.kimi-code/mcp.json`；Kimi 桌面客户端读自己的内核 home `~/Library/Application Support/kimi-desktop/daimon-share/daimon/runtime/kimi-code/home/mcp.json`——两者是独立文件、不互相同步。重抓 `IMA_COOKIE` 后必须**同时更新这两处**，否则报错 `600001` 的一侧就是没更新的那份。server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。MCP 只在新会话注册，配置变更后需重开会话
+- **配置位置（项目级，三个项目需同步维护）**：`ima` 配置在本项目及相邻 `pubmed-crawler/`、`medical/` 的 `.kimi-code/mcp.json`，Kimi Code CLI 与桌面客户端打开对应工作区时读同一份项目配置；两处用户级全局配置不再注册 `ima`。重抓 `IMA_COOKIE` 后必须**同时更新这三个项目**，否则报错 `600001` 的项目就是没更新的那份。server 在 `~/tools/ima-mcp-server`（[ima-mcp-server](https://github.com/qqpp13465/ima-mcp-server)）。配置文件含凭据，已由各项目 `.gitignore` 排除；MCP 只在新会话注册，配置变更后需重开会话
 - **常用工具**：`ask_knowledge_base`（RAG 问答，单次只查一个库）；`upload_file` / `import_urls`（新指南、文献入库——**必须传 `folder_id` 归档到对应子目录**，归档流程与文件夹 ID 对照见 `ima-skills/kb-folder-ids.md`；按本地路径/内容分类，**无匹配类别时先问用户是否新建子目录**，同意后 `scripts/ima_kb_admin.py mkdir` 创建并回填 ID 表，不要落在根目录）；MCP 无 move/delete/mkdir 接口，整理已有条目用 `scripts/ima_kb_admin.py`（kbs/folders/ls/mv/mkdir/rm）
 - **检索路由（准则类问题强制）**：指南推荐、剂量、阈值、适应证等准则类问题**默认先查 ima，不先 WebSearch**；各库的 cookie_knowledge_base_id、分层（自有库为一级源，订阅共享库为二级源）与典型问题的检索顺序见 **`ima-skills/kb-registry.md`**，按该表选库，不必每次重新 `list_knowledge_bases_full`。ima 无覆盖或 MCP 失效时才降级 WebSearch / 本地 `guidelines/`，并在输出中声明降级
 - **引用纪律（强制）**：`ask_knowledge_base` 的 RAG 回答只是检索入口；剂量、推荐等级、阈值等关键数字必须用 references 中的 `media_id` 调 `get_media_info` **回原文核对**后再引用，拿不到原文的标注「未核对原文」；检索不到的内容写「知识库未覆盖，建议查原文」，**禁止凭记忆补剂量或推荐等级**；订阅库与自有库/本地笔记冲突时并列呈现并提示用户，不自动采信
-- **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）。重抓后运行 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 可一次性同步更新两份配置（自动备份、回读校验、日志只显示脱敏凭证）
+- **凭证维护**：`IMA_COOKIE` 的 access token 几小时~一天过期，server 会自动用 refresh token 续期；报 `600001` 且续期失败时，按浏览器 F12 → Network → `/cgi-bin/assistant/qa` → `x-ima-cookie` 重抓（详见 `ima-skills/README.md` 相关说明）。重抓后运行 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 可一次性同步更新三个项目的配置（自动备份、回读校验、日志只显示脱敏凭证）
 - **使用边界**：真实病例资料（即使脱敏）不发送给 ima 工具；科室 SOP 库不通过 MCP 暴露；剂量、适应证等关键结论回指南原文核对；ima 检索结果与本地 `guidelines/` 笔记冲突时提示用户
 
 ---
 
 ## 8. 项目 Skills 与编排 workflow（CLI + 桌面客户端共用）
 
-`.kimi-code/skills/` 下的项目级 Skill 会被 Kimi Code CLI 和 Kimi 桌面客户端（打开本目录工作区时）**自动发现**——两侧读同一份文件，无需双份维护（与 §7 MCP 的双文件维护不同）。可 `/skill:<name>` 手动调用，或由模型按 description/whenToUse 自动触发；skill 在会话启动时扫描，新增或修改后需新开会话生效。Claude Code 不扫描该目录；在 Claude Code 会话中需要时直接引用对应文件路径即可。
+`.kimi-code/skills/` 下的项目级 Skill 会被 Kimi Code CLI 和 Kimi 桌面客户端（打开本目录工作区时）**自动发现**——两侧读同一份文件，无需双份维护（与 §7 MCP 的三项目配置维护不同）。可 `/skill:<name>` 手动调用，或由模型按 description/whenToUse 自动触发；skill 在会话启动时扫描，新增或修改后需新开会话生效。Claude Code 不扫描该目录；在 Claude Code 会话中需要时直接引用对应文件路径即可。
 
-**桌面客户端对齐注意**：客户端与 CLI 读同一份项目文件，产出分叉只可能来自三处——① 旧会话未重开（skill 是启动时扫描的）；② ima MCP 是独立 `mcp.json`（§7），cookie 过期会静默降级 WebSearch；③ sub-agent 派单：客户端装有 Agent 工具且注册了 `icu-consultant`，但运行指令默认"按需派发、不主动使用"（2026-10 探针 + 两次复跑证实）——`case-deep-analysis` 第 3/6 步在客户端要么由用户在请求中显式要求派单（"步骤 3 必须实际派出 icu-consultant"），要么由模型按 SKILL.md 降级条款先向用户要授权，**不得静默降级**。对齐与否不靠推断，用 `evals/` fixture 实测（流程见 `evals/README.md` §5）。
+**桌面客户端对齐注意**：客户端与 CLI 读同一份项目文件，产出分叉只可能来自三处——① 旧会话未重开（skill 是启动时扫描的）；② ima MCP 是独立 `mcp.json`（§7），cookie 过期会静默降级 WebSearch；③ sub-agent 派单：客户端装有 Agent 工具且注册了 `icu-consultant`，但运行指令默认"按需派发、不主动使用"（2026-10 探针 + 两次复跑证实）——为此本项目已授予**常设派单授权**（2026-10-21）：`case-deep-analysis` 步骤 3 必须实际派出 `icu-consultant`、步骤 6 必须实际派出全新上下文 sub-agent 做引用回核，无需每次在请求中显式要求、也无需停下来要授权；仅派单实际失败才允许按 SKILL.md 降级，且必须声明，**不得静默降级**。对齐与否不靠推断，用 `evals/` fixture 实测（流程见 `evals/README.md` §5）。
 
 **临床工作流 skill**（13 个，薄封装：frontmatter + 本地化适配前言，流程正文单源在 `ima-skills/NN-*.md`，正文中的「知识库」经 ima MCP 访问）：
 

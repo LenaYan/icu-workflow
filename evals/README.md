@@ -68,7 +68,7 @@ python3 scripts/check_case_doc.py cases/2026-10/
 ⚠️ skill 在会话启动时扫描，任何 skill/模板/AGENTS.md 改动后必须在客户端**新开会话**，否则跑的是旧版本。
 
 1. 让它列出可用的 sub-agent 类型 → 确认 `icu-consultant` 是否可派单；不支持时应走 `case-deep-analysis` SKILL.md 末尾的「无 Agent 工具时的降级模式」，且输出中必须声明
-2. 让它调一次 `list_knowledge_bases_full` → 确认 ima MCP 不报 `600001`；报错则按 `ima-skills/README.md` 重抓 cookie 并跑 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 双同步
+2. 让它调一次 `list_knowledge_bases_full` → 确认 ima MCP 不报 `600001`；报错则按 `ima-skills/README.md` 重抓 cookie 并跑 `python3 snippets/update_ima_cookie.py "<新 cookie>"` 同步三个项目
 3. 让它跑 `python3 scripts/clinical_calc.py rox --help` → 确认 Bash / python3 权限可用（弹窗放行）
 
 **第二步：跑 fixture 对比基线**

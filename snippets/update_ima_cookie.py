@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
-"""同步更新 ima MCP 的双份 mcp.json（Kimi Code CLI + Kimi 桌面客户端）。
+"""Synchronize IMA_COOKIE across the three project-level MCP configurations.
 
-背景
-----
-ima MCP 的凭证 IMA_COOKIE 几小时~一天过期，重抓后必须同时更新两处配置，
-否则报 600001 的就是漏更新的那侧。两个文件相互独立、不自动同步：
+The ima MCP credential expires frequently. Update all three independent files
+together so CLI and desktop sessions in these projects use the same cookie:
 
-  1. CLI:      ~/.kimi-code/mcp.json
-  2. 客户端:   ~/Library/Application Support/kimi-desktop/daimon-share/daimon/
-               runtime/kimi-code/home/mcp.json
+  1. icu-workflow/.kimi-code/mcp.json
+  2. pubmed-crawler/.kimi-code/mcp.json
+  3. medical/.kimi-code/mcp.json
 
-用法
-----
-    python3 snippets/update_ima_cookie.py "PLATFORM=H5; ...完整 IMA_COOKIE...""
-    python3 snippets/update_ima_cookie.py          # 不带参数进入交互粘贴模式
+Usage:
+    python3 snippets/update_ima_cookie.py "PLATFORM=H5; ...full IMA_COOKIE..."
+    python3 snippets/update_ima_cookie.py  # Interactive paste mode
 
-重抓 cookie 的方法（详见 AGENTS.md §7）：
-浏览器 F12 -> Network -> /cgi-bin/assistant/qa 请求 -> 复制 x-ima-cookie 的值。
-
-注意：MCP 只在新会话注册，更新后需重开会话生效。
+See AGENTS.md section 7 for cookie recovery instructions. MCP configuration is
+registered at session startup, so open a new session after updating it.
 """
 
 from __future__ import annotations
@@ -31,11 +26,11 @@ import tempfile
 from datetime import datetime
 from pathlib import Path
 
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_PATHS = [
-    Path.home() / ".kimi-code" / "mcp.json",
-    Path.home()
-    / "Library/Application Support/kimi-desktop/daimon-share/daimon"
-    / "runtime/kimi-code/home/mcp.json",
+    PROJECT_ROOT / ".kimi-code" / "mcp.json",
+    PROJECT_ROOT.parent / "pubmed-crawler" / ".kimi-code" / "mcp.json",
+    PROJECT_ROOT.parent / "medical" / ".kimi-code" / "mcp.json",
 ]
 
 # 允许用环境变量覆盖路径（测试用）
@@ -127,8 +122,8 @@ def main() -> None:
     print(f"cookie: {mask(cookie)}")
     if fail:
         sys.exit(1)
-    print("两份配置已同步。请重开会话（MCP 只在新会话注册）后验证：list_knowledge_bases_full")
-    print("回滚：用同目录下 .bak-<时间戳> 备份覆盖即可。")
+    print("Three project configurations synchronized. Open a new session, then verify: list_knowledge_bases_full")
+    print("Rollback: restore the .bak-<timestamp> files beside the configurations.")
 
 
 if __name__ == "__main__":

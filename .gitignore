@@ -22,6 +22,8 @@
 
 # ---- Kimi Code ----
 .kimi-code/local.toml
+.kimi-code/mcp.json
+.kimi-code/mcp.json.bak-*
 
 # ---- Python ----
 __pycache__/

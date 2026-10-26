@@ -43,6 +43,7 @@
 | `folder_7514874691193458` | kidney-AKI-CRRT |
 | `folder_7514874682806856` | sedation-delirium |
 | `folder_7514874678614440` | infection-antimicrobials |
+| `folder_7516484322460956` | ecg（心电图指南/共识/标准，2026-10-15 建，对应本地 `guidelines/_pdfs/ecg/`） |
 
 ## 移动/整理已有条目
 
